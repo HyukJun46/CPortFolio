@@ -19,7 +19,7 @@ ACPlayer::ACPlayer()
 	//ActorComponent
 	Status = CreateDefaultSubobject<UCStatusComponent>("Status");
 	Option = CreateDefaultSubobject<UCOptionComponent>("Option");
-	State = CreateDefaultSubobject<UCOptionComponent>("State");
+	State = CreateDefaultSubobject<UCStateComponent>("State");
 
 	//Component Settings(SkeletalMesh)
 	ConstructorHelpers::FObjectFinder<USkeletalMesh> meshAsset(TEXT("SkeletalMesh'/Game/Mixamo/Ch15_nonPBR.Ch15_nonPBR'"));

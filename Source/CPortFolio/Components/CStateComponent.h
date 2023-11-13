@@ -2,7 +2,7 @@
 
 #include "CoreMinimal.h"
 #include "Components/ActorComponent.h"
-#include "UStateComponent.generated.h"
+#include "CStateComponent.generated.h"
 
 UENUM(BlueprintType)
 enum class EStateType : uint8
@@ -13,12 +13,12 @@ enum class EStateType : uint8
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FStateTypeChangedSignature, EStateType, InPrevType, EStateType, InNewType);
 
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
-class CPORTFOLIO_API UUStateComponent : public UActorComponent
+class CPORTFOLIO_API UCStateComponent : public UActorComponent
 {
 	GENERATED_BODY()
 
 public:	
-	UUStateComponent();
+	UCStateComponent();
 
 protected:
 	virtual void BeginPlay() override;
@@ -29,7 +29,7 @@ public:
 		bool IsIdleMode() { return Type == EStateType::Idle; }
 
 	UFUNCTION(BlueprintPure)
-		bool IsIdleMode() { return Type == EStateType::Roll; }
+		bool IsRollMode() { return Type == EStateType::Roll; }
 	
 public:
 	void SetIdleMode();

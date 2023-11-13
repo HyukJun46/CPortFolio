@@ -1,26 +1,26 @@
-#include "UStateComponent.h"
+#include "CStateComponent.h"
 
-UUStateComponent::UUStateComponent()
+UCStateComponent::UCStateComponent()
 {
 }
 
-void UUStateComponent::BeginPlay()
+void UCStateComponent::BeginPlay()
 {
 	Super::BeginPlay();
 	
 }
 
-void UUStateComponent::SetIdleMode()
+void UCStateComponent::SetIdleMode()
 {
 	ChangeType(EStateType::Idle);
 }
 
-void UUStateComponent::SetRollMode()
+void UCStateComponent::SetRollMode()
 {
 	ChangeType(EStateType::Roll);
 }
 
-void UUStateComponent::ChangeType(EStateType InNewType)
+void UCStateComponent::ChangeType(EStateType InNewType)
 {
 	EStateType prev = Type;
 	Type = InNewType;
