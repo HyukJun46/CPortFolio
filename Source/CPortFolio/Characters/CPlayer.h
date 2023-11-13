@@ -49,4 +49,7 @@ private:
 
 	UPROPERTY(VisibleDefaultsOnly)
 		class UCStateComponent* State;
+
+	UPROPERTY(VisibleDefaultsOnly)
+		class UCMontagesComponent* Montages;
 };
