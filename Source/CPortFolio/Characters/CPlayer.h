@@ -23,9 +23,9 @@ private:
 	//MoveEvent
 	void OnMoveForward(float Axis);
 	void OnMoveRight(float Axis);
-
 	void OnHorizontalLook(float Axis);
 	void OnVerticalLook(float Axis);
+	void OnZoom(float Axis);
 
 private:
 	//Sprint
@@ -39,9 +39,11 @@ private:
 	UPROPERTY(VisibleDefaultsOnly)
 		class UCameraComponent* Camera;
 
-	//Mouse
-	UPROPERTY(EditAnywhere, Category = "Mouse")
-		float HorizontalSpeed = 45.f;
-	UPROPERTY(EditAnywhere, Category = "Mouse")
-		float VerticalSpeed = 45.f;
+private:
+	//Actor Component
+	UPROPERTY(VisibleDefaultsOnly)
+		class UCStatusComponent* Status;
+
+	UPROPERTY(VisibleDefaultsOnly)
+		class UCOptionComponent* Option;
 };

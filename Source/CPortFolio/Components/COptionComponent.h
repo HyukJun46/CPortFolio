@@ -1,0 +1,34 @@
+#pragma once
+
+#include "CoreMinimal.h"
+#include "Components/ActorComponent.h"
+#include "COptionComponent.generated.h"
+
+
+UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
+class CPORTFOLIO_API UCOptionComponent : public UActorComponent
+{
+	GENERATED_BODY()
+
+public:	
+	UCOptionComponent();
+
+protected:
+	virtual void BeginPlay() override;
+
+public:
+	FORCEINLINE float GetHorizontalSpeed() { return HorizontalSpeed; }
+	FORCEINLINE float GetVerticalSpeed() { return VerticalSpeed; }
+
+	FORCEINLINE float GetZoomSpeed() { return ZoomSpeed; }
+
+private:
+	UPROPERTY(EditAnywhere, Category = "Mouse")
+		float HorizontalSpeed = 45.f;
+
+	UPROPERTY(EditAnywhere, Category = "Mouse")
+		float VerticalSpeed = 45.f;
+
+	UPROPERTY(EditAnywhere, Category = "Mouse")
+		float ZoomSpeed = 1000.f;
+};

@@ -3,14 +3,21 @@
 #include "Camera/CameraComponent.h"
 #include "GameFramework/CharacterMovementComponent.h"
 #include "Components/CapsuleComponent.h"
+#include "Components/CStatusComponent.h"
+#include "Components/COptionComponent.h"
 
 ACPlayer::ACPlayer()
 {
 	PrimaryActorTick.bCanEverTick = true;
 
 	//Spring Arm
+	//SceneComponent
 	SpringArm = CreateDefaultSubobject<USpringArmComponent>("SpringArm");
 	Camera = CreateDefaultSubobject<UCameraComponent>("Camera");
+
+	//ActorComponent
+	Status = CreateDefaultSubobject<UCStatusComponent>("Status");
+	Option = CreateDefaultSubobject<UCOptionComponent>("Option");
 
 	//Component Settings(SkeletalMesh)
 	ConstructorHelpers::FObjectFinder<USkeletalMesh> meshAsset(TEXT("SkeletalMesh'/Game/Mixamo/Ch15_nonPBR.Ch15_nonPBR'"));
@@ -40,8 +47,6 @@ ACPlayer::ACPlayer()
 	bUseControllerRotationYaw = false;
 	GetCharacterMovement()->bOrientRotationToMovement = true;
 	GetCharacterMovement()->MaxWalkSpeed = 400.f;
-
-
 }
 
 void ACPlayer::BeginPlay()
@@ -65,6 +70,7 @@ void ACPlayer::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 	PlayerInputComponent->BindAxis("MoveRight", this, &ACPlayer::OnMoveRight);
 	PlayerInputComponent->BindAxis("HorizontalLook", this, &ACPlayer::OnHorizontalLook);
 	PlayerInputComponent->BindAxis("VerticalLook", this, &ACPlayer::OnVerticalLook);
+	PlayerInputComponent->BindAxis("Zoom", this, &ACPlayer::OnZoom);
 
 	//Action
 	//Sprint
@@ -76,6 +82,7 @@ void ACPlayer::OnMoveForward(float Axis)
 {
 	//CheckTrue
 	if (FMath::IsNearlyZero(Axis) == true) return;
+	if (Status->IsCanMove() == false) return;
 
 	//Forward
 	FRotator rotator = FRotator(0, GetControlRotation().Yaw, 0);
@@ -88,6 +95,7 @@ void ACPlayer::OnMoveRight(float Axis)
 {
 	//CheckTrue
 	if (FMath::IsNearlyZero(Axis) == true) return;
+	if (Status->IsCanMove() == false) return;
 
 	//Right
 	FRotator rotator = FRotator(0, GetControlRotation().Yaw, 0);
@@ -98,24 +106,30 @@ void ACPlayer::OnMoveRight(float Axis)
 
 void ACPlayer::OnHorizontalLook(float Axis)
 {
-	float speed = HorizontalSpeed;
+	float speed = Option->GetHorizontalSpeed();
 	AddControllerYawInput(speed * Axis * GetWorld()->GetDeltaSeconds());
 }
 
 void ACPlayer::OnVerticalLook(float Axis)
 {
-	float speed = VerticalSpeed;
+	float speed = Option->GetVerticalSpeed();;
 	AddControllerPitchInput(speed * Axis * GetWorld()->GetDeltaSeconds());
 
 }
 
+void ACPlayer::OnZoom(float Axis)
+{
+	float rate = Option->GetZoomSpeed() * Axis * GetWorld()->GetDeltaSeconds();
+	SpringArm->TargetArmLength += rate;
+}
+
 void ACPlayer::OnSprint()
 {
-	GetCharacterMovement()->MaxWalkSpeed = 600.f;
+	GetCharacterMovement()->MaxWalkSpeed = Status->GetSprintSpeed();
 }
 
 void ACPlayer::OffSprint()
 {
-	GetCharacterMovement()->MaxWalkSpeed = 400.f;
+	GetCharacterMovement()->MaxWalkSpeed = Status->GetWalkSpeed();
 }
 
