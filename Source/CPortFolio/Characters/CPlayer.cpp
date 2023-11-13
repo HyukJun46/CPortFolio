@@ -5,6 +5,7 @@
 #include "Components/CapsuleComponent.h"
 #include "Components/CStatusComponent.h"
 #include "Components/COptionComponent.h"
+#include "Components/CStateComponent.h"
 
 ACPlayer::ACPlayer()
 {
@@ -18,6 +19,7 @@ ACPlayer::ACPlayer()
 	//ActorComponent
 	Status = CreateDefaultSubobject<UCStatusComponent>("Status");
 	Option = CreateDefaultSubobject<UCOptionComponent>("Option");
+	State = CreateDefaultSubobject<UCOptionComponent>("State");
 
 	//Component Settings(SkeletalMesh)
 	ConstructorHelpers::FObjectFinder<USkeletalMesh> meshAsset(TEXT("SkeletalMesh'/Game/Mixamo/Ch15_nonPBR.Ch15_nonPBR'"));

@@ -46,4 +46,7 @@ private:
 
 	UPROPERTY(VisibleDefaultsOnly)
 		class UCOptionComponent* Option;
+
+	UPROPERTY(VisibleDefaultsOnly)
+		class UCStateComponent* State;
 };
