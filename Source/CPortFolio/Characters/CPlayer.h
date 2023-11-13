@@ -44,9 +44,4 @@ private:
 		float HorizontalSpeed = 45.f;
 	UPROPERTY(EditAnywhere, Category = "Mouse")
 		float VerticalSpeed = 45.f;
-
-private:
-	//Actor Component
-	UPROPERTY(VisibleDefaultsOnly)
-		class UCStatusComponent* Status;
 };

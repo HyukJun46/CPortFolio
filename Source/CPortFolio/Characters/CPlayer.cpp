@@ -1,9 +1,8 @@
 #include "CPlayer.h"
 #include "GameFramework/SpringArmComponent.h"
-#include "GameFramework/CharacterMovementComponent.h"
 #include "Camera/CameraComponent.h"
+#include "GameFramework/CharacterMovementComponent.h"
 #include "Components/CapsuleComponent.h"
-#include "Components/CStatusComponent.h"
 
 ACPlayer::ACPlayer()
 {
@@ -12,9 +11,6 @@ ACPlayer::ACPlayer()
 	//Spring Arm
 	SpringArm = CreateDefaultSubobject<USpringArmComponent>("SpringArm");
 	Camera = CreateDefaultSubobject<UCameraComponent>("Camera");
-
-	//Create Actor Component
-
 
 	//Component Settings(SkeletalMesh)
 	ConstructorHelpers::FObjectFinder<USkeletalMesh> meshAsset(TEXT("SkeletalMesh'/Game/Mixamo/Ch15_nonPBR.Ch15_nonPBR'"));
@@ -30,7 +26,7 @@ ACPlayer::ACPlayer()
 	ConstructorHelpers::FClassFinder<UAnimInstance> asset(TEXT("AnimBlueprint'/Game/Player/ABP_Player.ABP_Player_C'"));
 	if (asset.Succeeded()) animClass = asset.Class;
 	GetMesh()->SetAnimInstanceClass(animClass);
-	
+
 	SpringArm->SetupAttachment(GetCapsuleComponent());
 	SpringArm->SetRelativeLocation(FVector(0, 0, 40));
 	SpringArm->SetRelativeRotation(FRotator(0, 90, 0));
