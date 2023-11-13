@@ -50,6 +50,6 @@ public:
 		UDataTable* DataTable;
 
 private:
-	FMontageData* MontageDatas[(int32)EStateType::Max];
+	FMontageData* Datas[(int32)EStateType::Max];
 		
 };
