@@ -5,7 +5,6 @@
 #include "Components/CapsuleComponent.h"
 #include "Components/CStatusComponent.h"
 #include "Components/COptionComponent.h"
-#include "Components/CStateComponent.h"
 #include "Components/CMontagesComponent.h"
 
 ACPlayer::ACPlayer()
@@ -57,6 +56,7 @@ void ACPlayer::BeginPlay()
 {
 	Super::BeginPlay();
 	
+	State->OnStateTypeChanged.AddDynamic(this, &ACPlayer::OnStateTypeChanged);
 }
 
 void ACPlayer::Tick(float DeltaTime)
@@ -80,6 +80,8 @@ void ACPlayer::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 	//Sprint
 	PlayerInputComponent->BindAction("Sprint", EInputEvent::IE_Pressed, this, &ACPlayer::OnSprint);
 	PlayerInputComponent->BindAction("Sprint", EInputEvent::IE_Released, this, &ACPlayer::OffSprint);
+	//Roll
+	PlayerInputComponent->BindAction("Roll", EInputEvent::IE_Pressed, this, &ACPlayer::OnRoll);
 }
 
 void ACPlayer::OnMoveForward(float Axis)
@@ -135,5 +137,28 @@ void ACPlayer::OnSprint()
 void ACPlayer::OffSprint()
 {
 	GetCharacterMovement()->MaxWalkSpeed = Status->GetWalkSpeed();
+}
+
+void ACPlayer::OnRoll()
+{
+	if (State->IsIdleMode() == false) return;
+
+	State->SetRollMode();
+}
+
+void ACPlayer::Begin_Roll()
+{
+	Montages->PlayRoll();
+}
+
+void ACPlayer::End_Roll()
+{
+	State->SetIdleMode();
+}
+
+void ACPlayer::OnStateTypeChanged(EStateType InPrevType, EStateType InNewType)
+{
+	EStateType::Roll;
+	Begin_Roll();
 }
 

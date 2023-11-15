@@ -6,6 +6,7 @@
 #include "CStateComponent.h"
 #include "CMontagesComponent.generated.h"
 
+
 //-----------------------------------------------------------------------------
 // Struct - MontageData(DataTable RowBase)
 //-----------------------------------------------------------------------------
@@ -45,10 +46,16 @@ public:
 protected:
 	virtual void BeginPlay() override;
 
+public:
+	void PlayRoll();
+
+private:
+	void PlayAnimMontage(EStateType InStateType);
+
 public:	
 	UPROPERTY(EditDefaultsOnly, Category = "DataTable")
 		UDataTable* DataTable;
-
+	
 private:
 	FMontageData* Datas[(int32)EStateType::Max];
 		
