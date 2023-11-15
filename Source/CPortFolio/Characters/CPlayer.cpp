@@ -161,7 +161,7 @@ void ACPlayer::Begin_Roll()
 
 void ACPlayer::End_Roll()
 {
-
+	
 	State->SetIdleMode();
 }
 
