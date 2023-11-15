@@ -6,6 +6,7 @@
 #include "Components/CStatusComponent.h"
 #include "Components/COptionComponent.h"
 #include "Components/CMontagesComponent.h"
+#include "Kismet/KismetMathLibrary.h"
 
 ACPlayer::ACPlayer()
 {
@@ -148,11 +149,19 @@ void ACPlayer::OnRoll()
 
 void ACPlayer::Begin_Roll()
 {
+	bUseControllerRotationYaw = false;
+	GetCharacterMovement()->bOrientRotationToMovement = true;
+
+	FVector start = GetActorLocation();
+	FVector target = start + GetVelocity().GetSafeNormal2D();
+	SetActorRotation(UKismetMathLibrary::FindLookAtRotation(start, target));
+
 	Montages->PlayRoll();
 }
 
 void ACPlayer::End_Roll()
 {
+
 	State->SetIdleMode();
 }
 

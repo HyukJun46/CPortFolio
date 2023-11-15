@@ -26,5 +26,5 @@ void UCStateComponent::ChangeType(EStateType InNewType)
 	Type = InNewType;
 
 	if (OnStateTypeChanged.IsBound())
-		OnStateTypeChanged.Broadcast(Type, InNewType);
+		OnStateTypeChanged.Broadcast(prev, InNewType);
 }

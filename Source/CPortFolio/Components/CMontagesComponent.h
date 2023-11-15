@@ -16,6 +16,9 @@ struct FMontageData : public FTableRowBase
 	GENERATED_BODY()
 
 public:
+	static void Log(const FString& InValue);
+
+public:
 	UPROPERTY(EditAnywhere)
 		EStateType Type;
 

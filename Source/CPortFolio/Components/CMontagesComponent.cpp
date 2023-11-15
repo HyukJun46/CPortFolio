@@ -26,7 +26,6 @@ void UCMontagesComponent::BeginPlay()
 			}
 		}
 	}
-
 }
 
 void UCMontagesComponent::PlayRoll()
