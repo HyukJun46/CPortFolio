@@ -9,10 +9,7 @@ void UCMontagesComponent::BeginPlay()
 {
 	Super::BeginPlay();
 
-	if (DataTable == nullptr)
-	{
-		return;
-	}
+	if (DataTable == nullptr) return;
 
 	TArray<FMontageData*> datas;
 	DataTable->GetAllRows<FMontageData>("", datas);
@@ -43,7 +40,7 @@ void UCMontagesComponent::PlayAnimMontage(EStateType InStateType)
 	ACharacter* ownerCharacter = Cast<ACharacter>(GetOwner());
 	if (ownerCharacter == nullptr) return;
 
-	FMontageData* data = Datas[(int32)InStateType];
+	const FMontageData* data = Datas[(int32)InStateType];
 
 	if(!!data && !!data->AnimMontage)
 		ownerCharacter->PlayAnimMontage(data->AnimMontage, data->PlayRate, data->StartSection);

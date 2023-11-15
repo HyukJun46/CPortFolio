@@ -158,7 +158,9 @@ void ACPlayer::End_Roll()
 
 void ACPlayer::OnStateTypeChanged(EStateType InPrevType, EStateType InNewType)
 {
-	EStateType::Roll;
-	Begin_Roll();
+	switch (InNewType)
+	{
+		case EStateType::Roll:	Begin_Roll();	break;
+	}
 }
 
