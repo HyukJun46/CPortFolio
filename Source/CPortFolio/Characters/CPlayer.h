@@ -35,6 +35,8 @@ private:
 	void OffSprint();
 	//Roll
 	void OnRoll();
+	//Fist
+	void OnFist();
 
 private:
 	void Begin_Roll();

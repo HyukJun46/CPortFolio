@@ -85,6 +85,8 @@ void ACPlayer::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 	PlayerInputComponent->BindAction("Sprint", EInputEvent::IE_Released, this, &ACPlayer::OffSprint);
 	//Roll
 	PlayerInputComponent->BindAction("Roll", EInputEvent::IE_Pressed, this, &ACPlayer::OnRoll);
+	//Fist
+	PlayerInputComponent->BindAction("Fist", EInputEvent::IE_Pressed, this, &ACPlayer::OnFist);
 }
 
 void ACPlayer::OnMoveForward(float Axis)
@@ -147,6 +149,13 @@ void ACPlayer::OnRoll()
 	if (State->IsIdleMode() == false) return;
 
 	State->SetRollMode();
+}
+
+void ACPlayer::OnFist()
+{
+	if(State->IsIdleMode() == false) return;
+
+	Action->SetFistMode();
 }
 
 void ACPlayer::Begin_Roll()
