@@ -6,6 +6,7 @@
 #include "Components/CStatusComponent.h"
 #include "Components/COptionComponent.h"
 #include "Components/CMontagesComponent.h"
+#include "Components/CActionComponent.h"
 #include "Kismet/KismetMathLibrary.h"
 
 ACPlayer::ACPlayer()
@@ -22,6 +23,7 @@ ACPlayer::ACPlayer()
 	Option = CreateDefaultSubobject<UCOptionComponent>("Option");
 	State = CreateDefaultSubobject<UCStateComponent>("State");
 	Montages = CreateDefaultSubobject<UCMontagesComponent>("Montages");
+	Action = CreateDefaultSubobject<UCActionComponent>("Action");
 
 	//Component Settings(SkeletalMesh)
 	ConstructorHelpers::FObjectFinder<USkeletalMesh> meshAsset(TEXT("SkeletalMesh'/Game/Mixamo/Ch15_nonPBR.Ch15_nonPBR'"));

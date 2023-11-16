@@ -5,8 +5,13 @@ void UCAnimInstance::NativeBeginPlay()
 {
 	Super::NativeBeginPlay();
 
-	APawn* OwnerPawn = TryGetPawnOwner();
-	if (OwnerPawn == nullptr) return;
+	APawn* ownerPawn = TryGetPawnOwner();
+	if (ownerPawn == nullptr) return;
+
+	UCActionComponent* actionComp = Cast<UCActionComponent>(ownerPawn->GetComponentByClass(UCActionComponent::StaticClass()));
+	if (actionComp == nullptr) return;
+
+	actionComp->OnActionTypeChanged.AddDynamic(this, &UCAnimInstance::OnActionTypeChanged);
 
 }
 
@@ -20,4 +25,9 @@ void UCAnimInstance::NativeUpdateAnimation(float DeltaSeconds)
 
 	Speed = OwnerPawn->GetVelocity().Size2D();
 	Direction = CalculateDirection(OwnerPawn->GetVelocity(), OwnerPawn->GetControlRotation());
+}
+
+void UCAnimInstance::OnActionTypeChanged(EActionType InPrevType, EActionType InNewType)
+{
+	ActionType = InNewType;
 }
