@@ -42,3 +42,7 @@ void ACEquipment::End_Equip_Implementation()
 {
 	StateComp->SetIdleMode();
 }
+
+void ACEquipment::Unequip_Implementation()
+{
+}

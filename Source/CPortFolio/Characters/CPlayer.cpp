@@ -19,11 +19,11 @@ ACPlayer::ACPlayer()
 	Camera = CreateDefaultSubobject<UCameraComponent>("Camera");
 
 	//ActorComponent
-	Status = CreateDefaultSubobject<UCStatusComponent>("Status");
-	Option = CreateDefaultSubobject<UCOptionComponent>("Option");
-	State = CreateDefaultSubobject<UCStateComponent>("State");
-	Montages = CreateDefaultSubobject<UCMontagesComponent>("Montages");
 	Action = CreateDefaultSubobject<UCActionComponent>("Action");
+	Montages = CreateDefaultSubobject<UCMontagesComponent>("Montages");
+	Status = CreateDefaultSubobject<UCStatusComponent>("Status");
+	State = CreateDefaultSubobject<UCStateComponent>("State");
+	Option = CreateDefaultSubobject<UCOptionComponent>("Option");
 
 	//Component Settings(SkeletalMesh)
 	ConstructorHelpers::FObjectFinder<USkeletalMesh> meshAsset(TEXT("SkeletalMesh'/Game/Mixamo/Ch15_nonPBR.Ch15_nonPBR'"));
@@ -60,6 +60,8 @@ void ACPlayer::BeginPlay()
 	Super::BeginPlay();
 	
 	State->OnStateTypeChanged.AddDynamic(this, &ACPlayer::OnStateTypeChanged);
+
+	Action->SetUnarmedMode();
 }
 
 void ACPlayer::Tick(float DeltaTime)
@@ -87,6 +89,8 @@ void ACPlayer::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 	PlayerInputComponent->BindAction("Roll", EInputEvent::IE_Pressed, this, &ACPlayer::OnRoll);
 	//Fist
 	PlayerInputComponent->BindAction("Fist", EInputEvent::IE_Pressed, this, &ACPlayer::OnFist);
+	//Sword
+	PlayerInputComponent->BindAction("Sword", EInputEvent::IE_Pressed, this, &ACPlayer::OnSword);
 }
 
 void ACPlayer::OnMoveForward(float Axis)
@@ -156,6 +160,13 @@ void ACPlayer::OnFist()
 	if(State->IsIdleMode() == false) return;
 
 	Action->SetFistMode();
+}
+
+void ACPlayer::OnSword()
+{
+	if (State->IsIdleMode() == false) return;
+
+	Action->SetSwordMode();
 }
 
 void ACPlayer::Begin_Roll()

@@ -37,6 +37,10 @@ public:
 		void End_Equip();
 	void End_Equip_Implementation();
 
+	UFUNCTION(BlueprintNativeEvent)
+		void Unequip();
+	void Unequip_Implementation();
+
 public:
 	UPROPERTY(BlueprintAssignable)
 		FBeginEquipSignature OnBeginEquip;

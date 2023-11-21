@@ -41,6 +41,12 @@ public:
 	void BeginPlay(class ACharacter* InOwnerCharacter);
 
 public:
+	FORCEINLINE class ACEquipment* GetEquipment() { return Equipment; }
+
+private:
+	FString GetCustomActorLabel(class ACharacter* InOwnerCharacter, FString InMiddleName);
+
+public:
 	UPROPERTY(EditAnywhere, Category = "Equipment")
 		TSubclassOf<class ACEquipment> EquipmentClass;
 

@@ -37,6 +37,8 @@ private:
 	void OnRoll();
 	//Fist
 	void OnFist();
+	//Sword
+	void OnSword();
 
 private:
 	void Begin_Roll();
