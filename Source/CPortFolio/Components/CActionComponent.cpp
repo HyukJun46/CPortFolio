@@ -52,19 +52,22 @@ void UCActionComponent::SetGrenadeMode()
 
 void UCActionComponent::SetMode(EActionType InNewType)
 {
+	//같은 무기일때
 	if (Type == InNewType)
 	{
 		SetUnarmedMode();
 
 		return;
 	}
+	//Unaremd가 아닌 Type
 	else if (IsUnarmedMode() == false)
 	{
 		if(!!Datas[(int32)Type] && !!Datas[(int32)Type]->GetEquipment())
 			Datas[(int32)Type]->GetEquipment()->Unequip();
 	}
 
-	Datas[(int32)InNewType]->GetEquipment()->Equip();
+	if (!!Datas[(int32)Type] && !!Datas[(int32)InNewType]->GetEquipment())
+		Datas[(int32)InNewType]->GetEquipment()->Equip();
 
 	ChangeType(InNewType);
 }
