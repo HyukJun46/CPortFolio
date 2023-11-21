@@ -1,5 +1,6 @@
 #include "CEquipment.h"
 #include "GameFramework/Character.h"
+#include "GameFramework/CharacterMovementComponent.h"
 #include "Components/CStateComponent.h"
 #include "Components/CStatusComponent.h"
 
@@ -21,8 +22,10 @@ void ACEquipment::BeginPlay()
 
 void ACEquipment::Equip_Implementation()
 {
+	//Set State Equip
 	StateComp->SetEquipMode();
 
+	//Play Draw AnimMontage
 	if(!!Data.AnimMontage)
 		OwnerCharacter->PlayAnimMontage(Data.AnimMontage, Data.PlayRate, Data.StartSection);
 	else
@@ -30,6 +33,16 @@ void ACEquipment::Equip_Implementation()
 		Begin_Equip();
 		End_Equip();
 	}
+
+	//bPawnController
+	if (Data.bPawnControl == true)
+	{
+		OwnerCharacter->bUseControllerRotationYaw = true;
+		OwnerCharacter->GetCharacterMovement()->bOrientRotationToMovement = false;
+	}
+
+	//bCanMove
+	Data.bCanMove ? StatusComp->SetMove() : StatusComp->SetStop();
 }
 
 void ACEquipment::Begin_Equip_Implementation()
