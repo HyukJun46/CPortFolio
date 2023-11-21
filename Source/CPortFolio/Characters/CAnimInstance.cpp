@@ -8,6 +8,7 @@ void UCAnimInstance::NativeBeginPlay()
 	APawn* ownerPawn = TryGetPawnOwner();
 	if (ownerPawn == nullptr) return;
 
+	//Get Component
 	UCActionComponent* actionComp = Cast<UCActionComponent>(ownerPawn->GetComponentByClass(UCActionComponent::StaticClass()));
 	if (actionComp == nullptr) return;
 

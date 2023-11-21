@@ -20,6 +20,11 @@ void UCStateComponent::SetRollMode()
 	ChangeType(EStateType::Roll);
 }
 
+void UCStateComponent::SetEquipMode()
+{
+	ChangeType(EStateType::Equip);
+}
+
 void UCStateComponent::ChangeType(EStateType InNewType)
 {
 	EStateType prev = Type;

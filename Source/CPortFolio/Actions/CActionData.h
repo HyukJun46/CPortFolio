@@ -38,6 +38,9 @@ class CPORTFOLIO_API UCActionData : public UDataAsset
 	GENERATED_BODY()
 	
 public:
+	void BeginPlay(class ACharacter* InOwnerCharacter);
+
+public:
 	UPROPERTY(EditAnywhere, Category = "Equipment")
 		TSubclassOf<class ACEquipment> EquipmentClass;
 

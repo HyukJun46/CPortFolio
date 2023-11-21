@@ -2,7 +2,10 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
+#include "CActionData.h"
 #include "CEquipment.generated.h"
+
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FBeginEquipSignature);
 
 UCLASS()
 class CPORTFOLIO_API ACEquipment : public AActor
@@ -15,5 +18,39 @@ public:
 protected:
 	virtual void BeginPlay() override;
 
+public:
+	void SetData(const FEquipmentData& InData) { Data = InData; }
 
+public:
+	//Play Draw Montage
+	UFUNCTION(BlueprintNativeEvent)
+		void Equip();
+	void Equip_Implementation();
+
+	//Attach to Socket
+	UFUNCTION(BlueprintNativeEvent)
+		void Begin_Equip();
+	void Begin_Equip_Implementation();
+
+	//Set State Idle
+	UFUNCTION(BlueprintNativeEvent)
+		void End_Equip();
+	void End_Equip_Implementation();
+
+public:
+	UPROPERTY(BlueprintAssignable)
+		FBeginEquipSignature OnBeginEquip;
+
+protected:
+	UPROPERTY(BlueprintReadOnly)
+		class ACharacter* OwnerCharacter;
+
+	UPROPERTY(BlueprintReadOnly)
+		class UCStateComponent* StateComp;
+
+	UPROPERTY(BlueprintReadOnly)
+		class UCStatusComponent* StatusComp;
+
+private:
+	FEquipmentData Data;
 };
