@@ -2,10 +2,19 @@
 #include "Kismet/GameplayStatics.h"
 #include "GameFramework/Character.h"
 #include "CEquipment.h"
+#include "CAttachment.h"
 
 void UCActionData::BeginPlay(class ACharacter* InOwnerCharacter)
 {
 	FTransform transform;
+
+	if (!!AttachmentClass)
+	{
+		Attachment = InOwnerCharacter->GetWorld()->SpawnActorDeferred<ACAttachment>(AttachmentClass, transform, InOwnerCharacter);
+		Attachment->SetActorLabel(GetCustomActorLabel(InOwnerCharacter, "Attachment"));
+
+		UGameplayStatics::FinishSpawningActor(Attachment, transform);
+	}
 
 	if (!!EquipmentClass)
 	{
@@ -14,7 +23,15 @@ void UCActionData::BeginPlay(class ACharacter* InOwnerCharacter)
 		Equipment->SetActorLabel(GetCustomActorLabel(InOwnerCharacter, "Equipment"));
 
 		UGameplayStatics::FinishSpawningActor(Equipment, transform);
+
+		if (!!Attachment)
+		{
+			Equipment->OnBeginEquip.AddDynamic(Attachment, &ACAttachment::OnEquip);
+			Equipment->OnUnequip.AddDynamic(Attachment, &ACAttachment::OnUnequip);
+		}
 	}
+
+
 }
 
 FString UCActionData::GetCustomActorLabel(ACharacter* InOwnerCharacter, FString InMiddleName)

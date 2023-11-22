@@ -8,6 +8,7 @@
 #include "Components/CMontagesComponent.h"
 #include "Components/CActionComponent.h"
 #include "Kismet/KismetMathLibrary.h"
+#include "Actions/CActionData.h"
 
 ACPlayer::ACPlayer()
 {
@@ -183,7 +184,13 @@ void ACPlayer::Begin_Roll()
 
 void ACPlayer::End_Roll()
 {
-	
+	if (Action->GetCurrentData()->EquipmentData.bPawnControl == true)
+	{
+		bUseControllerRotationYaw = true;
+		GetCharacterMovement()->bOrientRotationToMovement = false;
+
+	}
+
 	State->SetIdleMode();
 }
 

@@ -6,6 +6,7 @@
 #include "CEquipment.generated.h"
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FBeginEquipSignature);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FUnequipSignature);
 
 UCLASS()
 class CPORTFOLIO_API ACEquipment : public AActor
@@ -44,6 +45,8 @@ public:
 public:
 	UPROPERTY(BlueprintAssignable)
 		FBeginEquipSignature OnBeginEquip;
+	UPROPERTY(BlueprintAssignable)
+		FUnequipSignature OnUnequip;
 
 protected:
 	UPROPERTY(BlueprintReadOnly)

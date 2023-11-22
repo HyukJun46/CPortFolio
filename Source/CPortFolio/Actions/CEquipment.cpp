@@ -54,8 +54,14 @@ void ACEquipment::Begin_Equip_Implementation()
 void ACEquipment::End_Equip_Implementation()
 {
 	StateComp->SetIdleMode();
+	StatusComp->SetMove();
 }
 
 void ACEquipment::Unequip_Implementation()
 {
+	OwnerCharacter->bUseControllerRotationYaw = false;
+	OwnerCharacter->GetCharacterMovement()->bOrientRotationToMovement = true;
+
+	if (OnUnequip.IsBound())
+		OnUnequip.Broadcast();
 }

@@ -47,6 +47,9 @@ private:
 	FString GetCustomActorLabel(class ACharacter* InOwnerCharacter, FString InMiddleName);
 
 public:
+	UPROPERTY(EditAnywhere, Category = "Attachment")
+		TSubclassOf<class ACAttachment> AttachmentClass;
+
 	UPROPERTY(EditAnywhere, Category = "Equipment")
 		TSubclassOf<class ACEquipment> EquipmentClass;
 
@@ -55,5 +58,5 @@ public:
 		
 private:
 	class ACEquipment* Equipment;
-
+	class ACAttachment* Attachment;
 };
