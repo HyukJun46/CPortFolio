@@ -39,6 +39,9 @@ private:
 	void OnFist();
 	//Sword
 	void OnSword();
+	//Gun
+	void OnGun();
+
 
 private:
 	void Begin_Roll();
