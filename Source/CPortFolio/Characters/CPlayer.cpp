@@ -94,6 +94,8 @@ void ACPlayer::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 	PlayerInputComponent->BindAction("Sword", EInputEvent::IE_Pressed, this, &ACPlayer::OnSword);
 	//Gun
 	PlayerInputComponent->BindAction("Gun", EInputEvent::IE_Pressed, this, &ACPlayer::OnGun);
+	//Action
+	PlayerInputComponent->BindAction("Action", EInputEvent::IE_Pressed, this, &ACPlayer::OnAction);
 }
 
 void ACPlayer::OnMoveForward(float Axis)
@@ -177,6 +179,11 @@ void ACPlayer::OnGun()
 	if (State->IsIdleMode() == false) return;
 
 	Action->SetGunMode();
+}
+
+void ACPlayer::OnAction()
+{
+	Action->DoAction();
 }
 
 void ACPlayer::Begin_Roll()

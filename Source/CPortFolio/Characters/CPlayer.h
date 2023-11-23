@@ -41,7 +41,8 @@ private:
 	void OnSword();
 	//Gun
 	void OnGun();
-
+	//Action
+	void OnAction();
 
 private:
 	void Begin_Roll();

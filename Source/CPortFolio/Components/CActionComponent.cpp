@@ -2,6 +2,7 @@
 #include "GameFramework/Character.h"
 #include "Actions/CActionData.h"
 #include "Actions/CEquipment.h"
+#include "Actions/CDoAction.h"
 
 UCActionComponent::UCActionComponent()
 {
@@ -48,6 +49,21 @@ void UCActionComponent::SetGunMode()
 void UCActionComponent::SetGrenadeMode()
 {
 	SetMode(EActionType::Grenade);
+}
+
+void UCActionComponent::DoAction()
+{
+	if (IsUnarmedMode() == true) return;
+
+	//현재 장착중인 Datas[Type]->GetDoActon()->DoAction();
+	if (!!GetCurrentData())
+	{
+		ACDoAction* doAction = GetCurrentData()->GetDoAction();
+
+		if (!!doAction)
+			doAction->DoAction();
+	}
+
 }
 
 void UCActionComponent::SetMode(EActionType InNewType)

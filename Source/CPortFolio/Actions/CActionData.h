@@ -30,6 +30,32 @@ public:
 };
 
 //-------------------------------------------------------------------
+//Struct - DoActionData
+//-------------------------------------------------------------------
+USTRUCT(BlueprintType)
+struct FDoActionData : public FEquipmentData
+{
+	GENERATED_BODY()
+
+public:
+	UPROPERTY(EditAnywhere)
+		float Power = 1.f;
+
+	UPROPERTY(EditAnywhere)
+		float HitStop;
+
+	UPROPERTY(EditAnywhere)
+		class UParticleSystem* Effect;
+
+	UPROPERTY(EditAnywhere)
+		FTransform EffectTransform;
+
+	UPROPERTY(EditAnywhere)
+		TSubclassOf<class UCameraShake> ShakeClass;
+};
+
+
+//-------------------------------------------------------------------
 //Class - DataAsset
 //-------------------------------------------------------------------
 UCLASS()
@@ -42,6 +68,8 @@ public:
 
 public:
 	FORCEINLINE class ACEquipment* GetEquipment() { return Equipment; }
+	FORCEINLINE class ACAttachment* GetAttachment() { return Attachment; }
+	FORCEINLINE class ACDoAction* GetDoAction() { return DoAction; }
 
 private:
 	FString GetCustomActorLabel(class ACharacter* InOwnerCharacter, FString InMiddleName);
@@ -55,8 +83,15 @@ public:
 
 	UPROPERTY(EditAnywhere, Category = "Equipment")
 		FEquipmentData EquipmentData;
-		
+	
+	UPROPERTY(EditAnywhere, Category = "DoAction")
+		TSubclassOf<class ACDoAction> DoActionClass;
+
+	UPROPERTY(EditAnywhere, Category = "DoAction")
+		TArray<FDoActionData> DoActionDatas;
+
 private:
 	class ACEquipment* Equipment;
 	class ACAttachment* Attachment;
+	class ACDoAction* DoAction;
 };

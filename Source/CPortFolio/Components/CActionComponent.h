@@ -51,6 +51,9 @@ public:
 	void SetGunMode();
 	void SetGrenadeMode();
 
+public:
+	void DoAction();
+
 private:
 	void SetMode(EActionType InNewType);
 	void ChangeType(EActionType InNewType);
