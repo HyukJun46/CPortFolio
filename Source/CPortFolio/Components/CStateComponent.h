@@ -38,6 +38,9 @@ public:
 		bool IsActionMode() { return Type == EStateType::Action; }
 
 public:
+	EStateType GetType() { return Type; }
+
+public:
 	void SetIdleMode();
 	void SetRollMode();
 	void SetEquipMode();

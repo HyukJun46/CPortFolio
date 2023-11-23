@@ -13,5 +13,7 @@ UCLASS()
 class CPORTFOLIO_API ACPortFolioGameModeBase : public AGameModeBase
 {
 	GENERATED_BODY()
-	
+
+public:
+	ACPortFolioGameModeBase();
 };
