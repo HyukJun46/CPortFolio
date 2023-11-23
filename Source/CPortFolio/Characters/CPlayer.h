@@ -42,7 +42,7 @@ private:
 	//Gun
 	void OnGun();
 	//Action
-	void OnAction();
+	void OnAttack();
 
 private:
 	void Begin_Roll();
