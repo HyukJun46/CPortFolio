@@ -1,31 +1,45 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
-
 #include "CEnemy_Girl.h"
+#include "GameFramework/CharacterMovementComponent.h"
+#include "Components/CActionComponent.h"
+#include "Components/CMontagesComponent.h"
+#include "Components/CStateComponent.h"
+#include "Components/CStatusComponent.h"
 
-// Sets default values
 ACEnemy_Girl::ACEnemy_Girl()
 {
- 	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
+	//Create Actor Component
+	Action = CreateDefaultSubobject<UCActionComponent>("Action");
+	Montages = CreateDefaultSubobject<UCMontagesComponent>("Montages");
+	State = CreateDefaultSubobject<UCStateComponent>("State");
+	Status = CreateDefaultSubobject<UCStatusComponent>("Status");
+
+	//Component Settings
+	GetMesh()->SetRelativeLocation(FVector(0, 0, -88));
+	GetMesh()->SetRelativeRotation(FRotator(0, -90, 0));
+
+	//Get Mesh
+	ConstructorHelpers::FObjectFinder<USkeletalMesh> meshAsset(TEXT("SkeletalMesh'/Game/Mixamo/Zombiegirl_W_Kurniawan.Zombiegirl_W_Kurniawan'"));
+	if(meshAsset.Succeeded())
+		GetMesh()->SetSkeletalMesh(meshAsset.Object);
+
+	//Get Class
+	TSubclassOf<UAnimInstance> animInstanceClass;
+	ConstructorHelpers::FClassFinder<UAnimInstance> asset(TEXT("AnimBlueprint'/Game/Enemies/ABP_CEnemy_Girl.ABP_CEnemy_Girl_C'"));
+	if (asset.Succeeded()) animInstanceClass = asset.Class;
+	GetMesh()->SetAnimInstanceClass(animInstanceClass);
+
+	GetCharacterMovement()->RotationRate = FRotator(0, 720, 0);
+	GetCharacterMovement()->MaxWalkSpeed = Status->GetWalkSpeed();
 }
 
-// Called when the game starts or when spawned
 void ACEnemy_Girl::BeginPlay()
 {
 	Super::BeginPlay();
 	
 }
 
-// Called every frame
-void ACEnemy_Girl::Tick(float DeltaTime)
-{
-	Super::Tick(DeltaTime);
-
-}
-
-// Called to bind functionality to input
 void ACEnemy_Girl::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
