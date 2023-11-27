@@ -18,6 +18,9 @@ public:
 	FORCEINLINE float GetWalkSpeed() { return WalkSpeed; }
 	FORCEINLINE float GetSprintSpeed() { return SprintSpeed; }
 	
+	FORCEINLINE float GetMaxHealth() { return MaxHealth; }
+	FORCEINLINE float GetCurrentHealth() { return CurrentHealth; }
+
 	FORCEINLINE bool IsCanMove() { return bCanMove; }
 
 	void SetMove();
@@ -36,6 +39,10 @@ private:
 	UPROPERTY(EditAnywhere, Category = "Speed")
 		float SprintSpeed = 600.f;
 
+	UPROPERTY(EditAnywhere, Category = "Health")
+		float MaxHealth = 100.f;
+
 private:
 	bool bCanMove = true;
+	float CurrentHealth;
 };

@@ -18,6 +18,13 @@ protected:
 public:	
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
+private: //Scene Component
+	UPROPERTY(VisibleDefaultsOnly)
+		class UWidgetComponent* NameWidget;
+
+	UPROPERTY(VisibleDefaultsOnly)
+		class UWidgetComponent* HealthWidget;
+
 private:
 	UPROPERTY(VisibleDefaultsOnly)
 		class UCActionComponent* Action;

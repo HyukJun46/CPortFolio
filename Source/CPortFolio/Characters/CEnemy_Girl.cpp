@@ -1,13 +1,23 @@
 #include "CEnemy_Girl.h"
 #include "GameFramework/CharacterMovementComponent.h"
 #include "Components/CActionComponent.h"
+#include "Components/WidgetComponent.h"
 #include "Components/CMontagesComponent.h"
 #include "Components/CStateComponent.h"
 #include "Components/CStatusComponent.h"
+#include "Widgets/CNameWidget.h"
+#include "Widgets/CHealthWidget.h"
 
 ACEnemy_Girl::ACEnemy_Girl()
 {
 	PrimaryActorTick.bCanEverTick = true;
+
+	//Create Scene Component
+	NameWidget = CreateDefaultSubobject<UWidgetComponent>("NameWidget");
+	NameWidget->SetupAttachment(GetMesh());
+
+	HealthWidget = CreateDefaultSubobject<UWidgetComponent>("HealthWidget");
+	HealthWidget->SetupAttachment(GetMesh());
 
 	//Create Actor Component
 	Action = CreateDefaultSubobject<UCActionComponent>("Action");
@@ -32,12 +42,44 @@ ACEnemy_Girl::ACEnemy_Girl()
 
 	GetCharacterMovement()->RotationRate = FRotator(0, 720, 0);
 	GetCharacterMovement()->MaxWalkSpeed = Status->GetWalkSpeed();
+
+	// -> WidgetComp
+	TSubclassOf<UCNameWidget> nameWidgetClass;
+	ConstructorHelpers::FClassFinder<UCNameWidget> nameAsset(TEXT("WidgetBlueprint'/Game/Widgets/WB_Name.WB_Name_C'"));
+	if (asset.Succeeded()) nameWidgetClass = nameAsset.Class;
+	NameWidget->SetWidgetClass(nameWidgetClass);
+	NameWidget->SetRelativeLocation(FVector(0, 0, 280));
+	NameWidget->SetDrawSize(FVector2D(240, 50));
+	NameWidget->SetWidgetSpace(EWidgetSpace::Screen);
+
+	TSubclassOf<UCHealthWidget> healthWidgetClass;
+	ConstructorHelpers::FClassFinder<UCHealthWidget> HealthAsset(TEXT("WidgetBlueprint'/Game/Widgets/WB_Health.WB_Health_C'"));
+	if (asset.Succeeded()) healthWidgetClass = HealthAsset.Class;
+	HealthWidget->SetWidgetClass(healthWidgetClass);
+	HealthWidget->SetRelativeLocation(FVector(0, 0, 240));
+	HealthWidget->SetDrawSize(FVector2D(120, 20));
+	HealthWidget->SetWidgetSpace(EWidgetSpace::Screen);
 }
 
 void ACEnemy_Girl::BeginPlay()
 {
 	Super::BeginPlay();
-	
+
+	//Widget Settings
+	NameWidget->InitWidget();
+	UCNameWidget* nameWidget = Cast<UCNameWidget>(NameWidget->GetUserWidgetObject());
+	if (!!nameWidget)
+	{
+		nameWidget->SetNames(GetController()->GetName(), GetName());
+	}
+
+	HealthWidget->InitWidget();
+	UCHealthWidget* healthWidget = Cast<UCHealthWidget>(HealthWidget->GetUserWidgetObject());
+	if (!!healthWidget)
+	{
+		healthWidget->UpdateHealth(Status->GetCurrentHealth(), Status->GetMaxHealth());
+	}
+
 }
 
 void ACEnemy_Girl::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
