@@ -51,6 +51,7 @@ protected:
 
 public:
 	void PlayRoll();
+	void PlayHitted();
 
 private:
 	void PlayAnimMontage(EStateType InStateType);

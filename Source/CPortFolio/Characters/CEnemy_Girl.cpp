@@ -7,6 +7,7 @@
 #include "Components/CStatusComponent.h"
 #include "Widgets/CNameWidget.h"
 #include "Widgets/CHealthWidget.h"
+#include "Kismet/KismetMathLibrary.h"
 
 ACEnemy_Girl::ACEnemy_Girl()
 {
@@ -110,6 +111,20 @@ void ACEnemy_Girl::Hitted()
 	{
 		healthWidget->UpdateHealth(Status->GetCurrentHealth(), Status->GetMaxHealth());
 	}
+
+	//Play Hitted Montage
+	Montages->PlayHitted();
+
+	//Look At Attacker
+	FVector start = GetActorLocation();
+	FVector target = Attacker->GetActorLocation();
+	FRotator rotation = FRotator(0, UKismetMathLibrary::FindLookAtRotation(start, target).Yaw, 0);
+	SetActorRotation(rotation);
+
+	//HitBack
+	FVector direction = (start - target).GetSafeNormal();
+	LaunchCharacter(direction * LaunchValue * DamageValue, true, false);
+
 }
 
 void ACEnemy_Girl::Dead()

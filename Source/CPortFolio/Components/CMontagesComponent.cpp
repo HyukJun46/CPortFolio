@@ -33,6 +33,11 @@ void UCMontagesComponent::PlayRoll()
 	PlayAnimMontage(EStateType::Roll);
 }
 
+void UCMontagesComponent::PlayHitted()
+{
+	PlayAnimMontage(EStateType::Hitted);
+}
+
 
 void UCMontagesComponent::PlayAnimMontage(EStateType InStateType)
 {

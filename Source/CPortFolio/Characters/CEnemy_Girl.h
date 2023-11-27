@@ -48,6 +48,13 @@ private:
 		class UCStatusComponent* Status;
 
 private:
+	UPROPERTY(EditAnywhere)
+		float LaunchValue = 25.f;
+
+//	UPROPERTY(EditAnywhere)
+//		bool bVisibleNameWidget = false;
+
+private:
 	class ACharacter* Attacker;
 	class AActor* Causer;
 	float DamageValue;
