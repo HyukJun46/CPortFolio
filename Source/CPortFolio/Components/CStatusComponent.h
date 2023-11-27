@@ -26,6 +26,11 @@ public:
 	void SetMove();
 	void SetStop();
 
+	void DecreaseHealth(float InAmount);
+	void IncreaseHealth(float InAmount);
+	
+	FORCEINLINE bool IsDead() { return CurrentHealth <= 0; }
+
 protected:
 	virtual void BeginPlay() override;
 

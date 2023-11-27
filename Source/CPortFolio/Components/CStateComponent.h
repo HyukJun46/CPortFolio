@@ -7,7 +7,7 @@
 UENUM(BlueprintType)
 enum class EStateType : uint8
 {
-	Idle, Roll, Equip, Action, Max
+	Idle, Roll, Equip, Action, Hitted, Dead, Max
 };
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FStateTypeChangedSignature, EStateType, InPrevType, EStateType, InNewType);
@@ -37,6 +37,12 @@ public:
 	UFUNCTION(BlueprintPure)
 		bool IsActionMode() { return Type == EStateType::Action; }
 
+	UFUNCTION(BlueprintPure)
+		bool IsHittedMode() { return Type == EStateType::Hitted; }
+
+	UFUNCTION(BlueprintPure)
+		bool IsDeadMode() { return Type == EStateType::Dead; }
+
 public:
 	EStateType GetType() { return Type; }
 
@@ -45,6 +51,8 @@ public:
 	void SetRollMode();
 	void SetEquipMode();
 	void SetActionMode();
+	void SetHittedMode();
+	void SetDeadMode();
 
 public:
 	void ChangeType(EStateType InNewType);

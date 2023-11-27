@@ -10,8 +10,6 @@
 
 ACEnemy_Girl::ACEnemy_Girl()
 {
-	PrimaryActorTick.bCanEverTick = true;
-
 	//Create Scene Component
 	NameWidget = CreateDefaultSubobject<UWidgetComponent>("NameWidget");
 	NameWidget->SetupAttachment(GetMesh());
@@ -63,6 +61,8 @@ ACEnemy_Girl::ACEnemy_Girl()
 
 void ACEnemy_Girl::BeginPlay()
 {
+	State->OnStateTypeChanged.AddDynamic(this, &ACEnemy_Girl::OnStateTypeChanged);
+
 	Super::BeginPlay();
 
 	//Widget Settings
@@ -82,9 +82,47 @@ void ACEnemy_Girl::BeginPlay()
 
 }
 
-void ACEnemy_Girl::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
+float ACEnemy_Girl::TakeDamage(float Damage, FDamageEvent const& DamageEvent, AController* EventInstigator, AActor* DamageCauser)
 {
-	Super::SetupPlayerInputComponent(PlayerInputComponent);
+	DamageValue = Super::TakeDamage(Damage, DamageEvent, EventInstigator, DamageCauser);
+	Attacker = Cast<ACharacter>(EventInstigator->GetPawn());
+	Causer = DamageCauser;
 
+	Status->DecreaseHealth(DamageValue);
+
+	if (Status->IsDead())
+	{
+		State->SetDeadMode();
+
+		return DamageValue;
+	}
+
+	State->SetHittedMode();
+
+	return DamageValue;
 }
+
+void ACEnemy_Girl::Hitted()
+{
+	//Apply Health Widget
+	UCHealthWidget* healthWidget = Cast<UCHealthWidget>(HealthWidget->GetUserWidgetObject());
+	if (!!healthWidget)
+	{
+		healthWidget->UpdateHealth(Status->GetCurrentHealth(), Status->GetMaxHealth());
+	}
+}
+
+void ACEnemy_Girl::Dead()
+{
+}
+
+void ACEnemy_Girl::OnStateTypeChanged(EStateType InPrevType, EStateType InNewType)
+{
+	switch (InNewType)
+	{
+		case EStateType::Hitted: Hitted();	break;
+		case EStateType::Dead:	Dead();	 break;
+	}
+}
+
 
