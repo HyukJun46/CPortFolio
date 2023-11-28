@@ -5,6 +5,7 @@
 #include "Components/CMontagesComponent.h"
 #include "Components/CStateComponent.h"
 #include "Components/CStatusComponent.h"
+#include "Components/CapsuleComponent.h"
 #include "Widgets/CNameWidget.h"
 #include "Widgets/CHealthWidget.h"
 #include "Kismet/KismetMathLibrary.h"
@@ -129,6 +130,25 @@ void ACEnemy_Girl::Hitted()
 
 void ACEnemy_Girl::Dead()
 {
+	//Widget Visibility Disable
+	NameWidget->SetVisibility(false);
+	HealthWidget->SetVisibility(false);
+
+	//Ragdoll
+	GetCapsuleComponent()->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+	GetMesh()->SetCollisionEnabled(ECollisionEnabled::QueryAndPhysics);
+	GetMesh()->SetSimulatePhysics(true);
+	GetMesh()->GlobalAnimRateScale = 0.f;
+
+	//Add Force
+	FVector start = GetActorLocation();
+	FVector target = Attacker->GetActorLocation();
+	FVector direction = (start - target).GetSafeNormal();
+	FVector force = direction * LaunchValue * DamageValue;
+	GetMesh()->AddForceAtLocation(force, start);
+
+	//Destroy All(Attachment, Equipment, DoAction...)
+
 }
 
 void ACEnemy_Girl::OnStateTypeChanged(EStateType InPrevType, EStateType InNewType)

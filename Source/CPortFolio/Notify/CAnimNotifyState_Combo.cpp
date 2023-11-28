@@ -1,15 +1,15 @@
-#include "CAnimNotifyState_Collision.h"
+#include "CAnimNotifyState_Combo.h"
 #include "Components/CActionComponent.h"
 #include "Actions/CActionData.h"
 #include "Actions/CAttachment.h"
 #include "Actions/CDoAction_Melee.h"
 
-FString UCAnimNotifyState_Collision::GetNotifyName_Implementation() const
+FString UCAnimNotifyState_Combo::GetNotifyName_Implementation() const
 {
-	return "Collision";
+	return "Combo";
 }
 
-void UCAnimNotifyState_Collision::NotifyBegin(USkeletalMeshComponent* MeshComp, UAnimSequenceBase* Animation, float TotalDuration)
+void UCAnimNotifyState_Combo::NotifyBegin(USkeletalMeshComponent* MeshComp, UAnimSequenceBase* Animation, float TotalDuration)
 {
 	Super::NotifyBegin(MeshComp, Animation, TotalDuration);
 	if (MeshComp == nullptr) return;
@@ -22,13 +22,12 @@ void UCAnimNotifyState_Collision::NotifyBegin(USkeletalMeshComponent* MeshComp, 
 	UCActionData* currData = actionComp->GetCurrentData();
 	if (currData == nullptr) return;
 
-	ACAttachment* attachment = currData->GetAttachment();
-	if (attachment == nullptr) return;
-
-	attachment->OnCollisions();
+	ACDoAction_Melee* doAction_melee = Cast<ACDoAction_Melee>(currData->GetDoAction());
+	if (doAction_melee == nullptr) return;
+	doAction_melee->EnableCombo();
 }
 
-void UCAnimNotifyState_Collision::NotifyEnd(USkeletalMeshComponent* MeshComp, UAnimSequenceBase* Animation)
+void UCAnimNotifyState_Combo::NotifyEnd(USkeletalMeshComponent* MeshComp, UAnimSequenceBase* Animation)
 {
 	Super::NotifyEnd(MeshComp, Animation);
 	if (MeshComp == nullptr) return;
@@ -41,13 +40,7 @@ void UCAnimNotifyState_Collision::NotifyEnd(USkeletalMeshComponent* MeshComp, UA
 	UCActionData* currData = actionComp->GetCurrentData();
 	if (currData == nullptr) return;
 
-	ACAttachment* attachment = currData->GetAttachment();
-	if (attachment == nullptr) return;
-
-	attachment->OffCollisions();
-
-	ACDoAction_Melee* doAction_Melee = Cast<ACDoAction_Melee>(currData->GetDoAction());
-	if (doAction_Melee == nullptr) return;
-	doAction_Melee->ClearHittedCharacters();
-
+	ACDoAction_Melee* doAction_melee = Cast<ACDoAction_Melee>(currData->GetDoAction());
+	if (doAction_melee == nullptr) return;
+	doAction_melee->DisableCombo();
 }
