@@ -8,12 +8,12 @@ ACBullet::ACBullet()
 {
 	Sphere = CreateDefaultSubobject<USphereComponent>("Sphere");
 	Sphere->SetupAttachment(RootComponent);
-
+	
 	Particle = CreateDefaultSubobject<UParticleSystemComponent>("Particle");
 	Particle->SetupAttachment(Sphere);
 
 	Projectile = CreateDefaultSubobject<UProjectileMovementComponent>("Profectile");
-	
+
 	InitialLifeSpan = 3.f;
 
 	Projectile->InitialSpeed = 2000.f;

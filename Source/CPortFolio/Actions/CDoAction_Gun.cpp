@@ -47,14 +47,14 @@ void ACDoAction_Gun::Begin_DoAction()
 	FRotator rotation;
 	OwnerCharacter->GetController()->GetPlayerViewPoint(location, rotation);
 
-	FVector handSocketLocation = OwnerCharacter->GetMesh()->GetSocketLocation("Muzzle");
+	FVector muzzleLocation = OwnerCharacter->GetMesh()->GetSocketLocation("Muzzle");
 	FVector cameraDirection = rotation.Vector();
-	location += cameraDirection * ((handSocketLocation - location) | cameraDirection);
+	location += cameraDirection * ((muzzleLocation - location) | cameraDirection);
 
 	FTransform transmform = Datas[0].EffectTransform;
 	transmform.AddToTranslation(location);
 	transmform.SetRotation(FQuat(OwnerCharacter->GetControlRotation()));
-
+	
 	ACBullet* Bullet = GetWorld()->SpawnActorDeferred<ACBullet>
 		(
 			Datas[0].ProjectileClass,
