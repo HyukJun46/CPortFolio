@@ -66,6 +66,19 @@ void UCActionComponent::DoAction()
 
 }
 
+void UCActionComponent::DoAim(bool InPressed)
+{
+	if (IsUnarmedMode() == true) return;
+
+	if (!!GetCurrentData())
+	{
+		ACDoAction* doAction = GetCurrentData()->GetDoAction();
+
+		if (!!doAction)
+			InPressed ? doAction->OnAim() : doAction->OffAim();
+	}
+}
+
 void UCActionComponent::SetMode(EActionType InNewType)
 {
 	//같은 무기일때

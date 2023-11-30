@@ -43,6 +43,9 @@ private:
 	void OnGun();
 	//Action
 	void OnAttack();
+	//Aim
+	void OnAim();
+	void OffAim();
 
 private:
 	void Begin_Roll();

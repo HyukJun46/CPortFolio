@@ -53,6 +53,7 @@ public:
 
 public:
 	void DoAction();
+	void DoAim(bool InPressed);
 
 private:
 	void SetMode(EActionType InNewType);

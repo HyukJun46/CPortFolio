@@ -96,6 +96,9 @@ void ACPlayer::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 	PlayerInputComponent->BindAction("Gun", EInputEvent::IE_Pressed, this, &ACPlayer::OnGun);
 	//Action
 	PlayerInputComponent->BindAction("Attack", EInputEvent::IE_Pressed, this, &ACPlayer::OnAttack);
+	//Aim
+	PlayerInputComponent->BindAction("Aim", EInputEvent::IE_Pressed, this, &ACPlayer::OnAim);
+	PlayerInputComponent->BindAction("Aim", EInputEvent::IE_Released, this, &ACPlayer::OffAim);
 }
 
 void ACPlayer::OnMoveForward(float Axis)
@@ -184,6 +187,16 @@ void ACPlayer::OnGun()
 void ACPlayer::OnAttack()
 {
 	Action->DoAction();
+}
+
+void ACPlayer::OnAim()
+{
+	Action->DoAim(true);
+}
+
+void ACPlayer::OffAim()
+{
+	Action->DoAim(false);
 }
 
 void ACPlayer::Begin_Roll()
