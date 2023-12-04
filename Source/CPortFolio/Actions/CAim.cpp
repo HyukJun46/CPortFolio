@@ -44,7 +44,7 @@ void UCAim::On()
 	bZooming = true;
 	HUD->EnableAim();
 
-	SpringArm->TargetArmLength = 100.f;
+	SpringArm->TargetArmLength = -80.f;
 	SpringArm->SocketOffset = FVector(0, 30, 10);
 	SpringArm->bEnableCameraLag = false;
 
