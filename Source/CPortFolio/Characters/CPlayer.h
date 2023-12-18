@@ -3,10 +3,11 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
 #include "Components/CStateComponent.h" //EnumType is Not Forward Declaration
+#include "GenericTeamAgentInterface.h"
 #include "CPlayer.generated.h"
 
 UCLASS()
-class CPORTFOLIO_API ACPlayer : public ACharacter
+class CPORTFOLIO_API ACPlayer : public ACharacter, public IGenericTeamAgentInterface
 {
 	GENERATED_BODY()
 
@@ -19,6 +20,9 @@ protected:
 public:	
 	virtual void Tick(float DeltaTime) override;
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
+
+public:
+	virtual FGenericTeamId GetGenericTeamId() const override;
 
 private:
 	//Move
@@ -80,4 +84,11 @@ private:
 
 	UPROPERTY(VisibleDefaultsOnly)
 		class UCActionComponent* Action;
+
+private:
+	UPROPERTY(EditDefaultsOnly)
+		uint8 PlayerTeamID = 0;
+
+private:
+	FGenericTeamId TeamGenericID;
 };

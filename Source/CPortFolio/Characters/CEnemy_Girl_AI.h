@@ -11,8 +11,13 @@ class CPORTFOLIO_API ACEnemy_Girl_AI : public ACEnemy_Girl
 
 public:
 	FORCEINLINE class UBehaviorTree* GetBehaviorTree() { return BehaviorTree; }
+	FORCEINLINE uint8 GetTeamID() { return TeamID; }
+
 
 private:
 	UPROPERTY(EditDefaultsOnly, Category = "AI")
 		class UBehaviorTree* BehaviorTree;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Team")
+		uint8 TeamID = 1;
 };
