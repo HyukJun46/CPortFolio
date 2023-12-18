@@ -26,7 +26,10 @@ protected:
 public: 
 	//Get Action
 	UFUNCTION(BlueprintPure)
-		class UCActionData* GetCurrentData() { return Datas[(int32)Type]; }
+		class UCActionData_Spawned* GetCurrentData() { return Datas[(int32)Type]; }
+
+	UFUNCTION(BlueprintPure)
+		class UCActionData* GetCurrentDataAsset() { return DataAssets[(int32)Type]; }
 
 	UFUNCTION(BlueprintPure)
 		FORCEINLINE bool IsUnarmedMode() { return Type == EActionType::Unarmed; }
@@ -65,9 +68,10 @@ public:
 
 private:
 	UPROPERTY(EditDefaultsOnly)
-		class UCActionData* Datas[(int32)EActionType::Max];
+		class UCActionData* DataAssets[(int32)EActionType::Max];
 private:
 	EActionType Type;
 
-		
+	UPROPERTY()
+		class UCActionData_Spawned* Datas[(int32)EActionType::Max];
 };

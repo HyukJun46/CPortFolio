@@ -17,7 +17,7 @@ void UCAnimNotify_BeginAction::Notify(USkeletalMeshComponent* MeshComp, UAnimSeq
 	UCActionComponent* actionComp = Cast<UCActionComponent>((MeshComp->GetOwner())->GetComponentByClass(UCActionComponent::StaticClass()));
 	if (actionComp == nullptr) return;
 
-	UCActionData* currentData = actionComp->GetCurrentData();
+	UCActionData_Spawned* currentData = actionComp->GetCurrentData();
 	if (currentData == nullptr) return;
 
 	ACDoAction* doAction = currentData->GetDoAction();

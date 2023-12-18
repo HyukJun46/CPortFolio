@@ -218,7 +218,9 @@ void ACPlayer::Begin_Roll()
 
 void ACPlayer::End_Roll()
 {
-	if (Action->GetCurrentData()->EquipmentData.bPawnControl == true)
+	if (Action->GetCurrentDataAsset() == nullptr) return;
+
+	if (Action->GetCurrentDataAsset()->EquipmentData.bPawnControl == true)
 	{
 		bUseControllerRotationYaw = true;
 		GetCharacterMovement()->bOrientRotationToMovement = false;

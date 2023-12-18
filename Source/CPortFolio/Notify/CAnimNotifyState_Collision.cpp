@@ -19,7 +19,7 @@ void UCAnimNotifyState_Collision::NotifyBegin(USkeletalMeshComponent* MeshComp, 
 	if (actionComp == nullptr) return;
 
 	//actionComp->DA[Type]->equipmentobj->Begin_Equip();
-	UCActionData* currData = actionComp->GetCurrentData();
+	UCActionData_Spawned* currData = actionComp->GetCurrentData();
 	if (currData == nullptr) return;
 
 	ACAttachment* attachment = currData->GetAttachment();
@@ -38,7 +38,7 @@ void UCAnimNotifyState_Collision::NotifyEnd(USkeletalMeshComponent* MeshComp, UA
 	if (actionComp == nullptr) return;
 
 	//actionComp->DA[Type]->equipmentobj->Begin_Equip();
-	UCActionData* currData = actionComp->GetCurrentData();
+	UCActionData_Spawned* currData = actionComp->GetCurrentData();
 	if (currData == nullptr) return;
 
 	ACAttachment* attachment = currData->GetAttachment();

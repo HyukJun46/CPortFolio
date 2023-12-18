@@ -18,7 +18,7 @@ void UCAnimNotifyState_Equip::NotifyBegin(USkeletalMeshComponent* MeshComp, UAni
 	if (actionComp == nullptr) return;
 
 	//actionComp->DA[Type]->equipmentobj->Begin_Equip();
-	UCActionData* currData = actionComp->GetCurrentData();
+	UCActionData_Spawned* currData = actionComp->GetCurrentData();
 	if (currData == nullptr) return;
 
 	ACEquipment* equipment = currData->GetEquipment();
@@ -37,7 +37,7 @@ void UCAnimNotifyState_Equip::NotifyEnd(USkeletalMeshComponent* MeshComp, UAnimS
 	if (actionComp == nullptr) return;
 
 	//actionComp->DA[Type]->equipmentobj->Begin_Equip();
-	UCActionData* currData = actionComp->GetCurrentData();
+	UCActionData_Spawned* currData = actionComp->GetCurrentData();
 	if (currData == nullptr) return;
 
 	ACEquipment* equipment = currData->GetEquipment();
