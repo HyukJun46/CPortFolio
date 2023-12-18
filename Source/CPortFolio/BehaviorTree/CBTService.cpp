@@ -46,11 +46,21 @@ void UCBTService::TickNode(UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory,
 	}
 
 
+
 	//Perceived Player
 	float distance = enemy->GetDistanceTo(player);
 
-	//-> Is in Sight Range
-	behaviorComp->SetApproachMode();
 	//-> Is in Attack Range
-	behaviorComp->SetActionMode();
+	if (distance < controller->GetBehaviorRange())
+	{
+		behaviorComp->SetActionMode();
+		return;
+	}
+
+	//-> Is in Sight Range
+	if (distance < controller->GetSightRadius())
+	{
+		behaviorComp->SetApproachMode();
+		return;
+	}
 }
