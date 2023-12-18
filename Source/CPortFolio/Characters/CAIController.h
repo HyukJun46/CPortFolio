@@ -22,6 +22,13 @@ public:
 	virtual void Tick(float DeltaTime) override;
 
 private:
-	class ACEnemy_AI* PossessedEnemy;
+	UPROPERTY(VisibleDefaultsOnly)
+		class UCBehaviorComponent* Behavior;
 
+	UPROPERTY(VisibleDefaultsOnly)
+		class UAIPerceptionComponent* Perception;
+
+private:
+	class ACEnemy_Girl_AI* PossessedEnemy;
+	class UAISenseConfig_Sight* Sight;
 };
