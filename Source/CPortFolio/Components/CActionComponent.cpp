@@ -24,8 +24,10 @@ void UCActionComponent::BeginPlay()
 
 void UCActionComponent::SetUnarmedMode()
 {
-	if(!!Datas[(int32)Type] && !!Datas[(int32)Type]->GetEquipment())
+	if (!!Datas[(int32)Type] && !!Datas[(int32)Type]->GetEquipment())
+	{
 		Datas[(int32)Type]->GetEquipment()->Unequip();
+	}
 
 	Datas[(int32)EActionType::Unarmed]->GetEquipment()->Equip();
 
