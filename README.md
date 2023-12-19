@@ -13,5 +13,6 @@ CPortFolio
 
 포트폴리오 설명
 ---------------
-![image](https://github.com/HyukJun46/CPortFolio/assets/126559827/fa848eb0-9771-4e38-967f-803def435497)
+![image](https://github.com/HyukJun46/CPortFolio/assets/126559827/4fde759e-3eb7-4ab1-8120-a1a72d77e807)
+
 
