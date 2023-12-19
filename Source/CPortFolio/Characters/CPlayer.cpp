@@ -153,12 +153,14 @@ void ACPlayer::OnZoom(float Axis)
 
 void ACPlayer::OnSprint()
 {
-	GetCharacterMovement()->MaxWalkSpeed = Status->GetSprintSpeed();
+	//GetCharacterMovement()->MaxWalkSpeed = Status->GetSprintSpeed();
+	Status->ChangeMoveSpeed(EWalkSpeedType::Run);
 }
 
 void ACPlayer::OffSprint()
 {
-	GetCharacterMovement()->MaxWalkSpeed = Status->GetWalkSpeed();
+	//GetCharacterMovement()->MaxWalkSpeed = Status->GetWalkSpeed();
+	Status->ChangeMoveSpeed(EWalkSpeedType::Walk);
 }
 
 void ACPlayer::OnRoll()
