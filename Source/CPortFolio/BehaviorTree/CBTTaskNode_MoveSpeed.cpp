@@ -9,6 +9,7 @@ UCBTTaskNode_MoveSpeed::UCBTTaskNode_MoveSpeed()
 
 EBTNodeResult::Type UCBTTaskNode_MoveSpeed::ExecuteTask(UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory)
 {
+    Super::ExecuteTask(OwnerComp, NodeMemory);
 
     AAIController* controller = OwnerComp.GetAIOwner();
     if (controller == nullptr) return EBTNodeResult::Failed;
