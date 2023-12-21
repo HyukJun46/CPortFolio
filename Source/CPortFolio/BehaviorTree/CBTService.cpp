@@ -1,6 +1,7 @@
 #include "CBTService.h"
 #include "Components/CBehaviorComponent.h"
 #include "Components/CStateComponent.h"
+#include "Components/CPatrolComponent.h"
 #include "Characters/CAIController.h"
 #include "Characters/CEnemy_Girl_AI.h"
 #include "Characters/CPlayer.h"
@@ -26,7 +27,8 @@ void UCBTService::TickNode(UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory,
 	UCStateComponent* stateComp = Cast<UCStateComponent>(enemy->GetComponentByClass(UCStateComponent::StaticClass()));
 	if (stateComp == nullptr) return;
 
-	
+	UCPatrolComponent* patrolComp = Cast<UCPatrolComponent>(enemy->GetComponentByClass(UCPatrolComponent::StaticClass()));
+	if (patrolComp == nullptr) return;
 
 	//Hitted
 	if (stateComp->IsHittedMode())
@@ -41,6 +43,12 @@ void UCBTService::TickNode(UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory,
 	//No Player
 	if (player == nullptr)
 	{
+		if(patrolComp->IsPathValid())
+		{
+			behaviorComp->SetPatrolMode();
+			return;
+		}
+
 		behaviorComp->SetWaitMode();
 		return;
 	}
