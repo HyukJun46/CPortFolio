@@ -191,3 +191,18 @@ public:
 };
 </pre>
 </code>
+
+BehaviorTree
+------------
+### 비헤이비어 트리를 사용하여 적들의 행동을 관리한다.
+
+1. PatrolNode - 적이 플레이어를 발견하기 전 까지 순찰경로를 따라 움직인다.
+![image](https://github.com/HyukJun46/CPortFolio/assets/126559827/855f084b-26cb-487a-90e9-5a2734550255)
+
+2. MoveSpeedNode - 적이 플레이어를 발견 할 경우 플레이어를 쫓아온다.
+![image](https://github.com/HyukJun46/CPortFolio/assets/126559827/410ed7c9-86db-4cbc-80a1-409d6af724f7)
+
+3. ActionNode - 적이 플레이어를 발견 할 경우 플레이어를 공격한다.
+![image](https://github.com/HyukJun46/CPortFolio/assets/126559827/7d7765a2-1559-4b36-93fe-d27380951ad7)
+
++ 플레이어가 일정 거리 이상 멀어진다면 Spline으로 되돌아가 다시 순찰을 시작한다.
