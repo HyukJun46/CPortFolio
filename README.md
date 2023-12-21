@@ -204,9 +204,11 @@ public:
 ![image](https://github.com/HyukJun46/CPortFolio/assets/126559827/641d2f0e-4367-4f32-9e95-b0b33729cbbe)
 
  + 2번을 누를경우 장착/해제할 수 있으며 SwordMode로 검으로 3번의 콤보공격을 할 수 있습니다.
+
 ![image](https://github.com/HyukJun46/CPortFolio/assets/126559827/ad487194-4835-446c-8eab-af5a36cfee2b)
 
  + 3번을 누를경우 장착/해제할 수 있으며 GunMode로 마우스 우클릭 시에만 조준하여 공격 할 수 있습니다.
+
 ![image](https://github.com/HyukJun46/CPortFolio/assets/126559827/2cf15de7-3a41-4908-9abf-b4d5aa6d3093)
 ![image](https://github.com/HyukJun46/CPortFolio/assets/126559827/56f672e3-09a7-4929-aefb-295f5cef2237)
 
