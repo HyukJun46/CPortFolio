@@ -73,32 +73,6 @@ public:
 	UPROPERTY(EditAnywhere)
 		bool bCanMove;
 };
-
-UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
-class CPORTFOLIO_API UCMontagesComponent : public UActorComponent
-{
-	GENERATED_BODY()
-
-public:	
-	UCMontagesComponent();
-
-protected:
-	virtual void BeginPlay() override;
-
-public:
-	void PlayRoll();
-	void PlayHitted();
-
-private:
-	void PlayAnimMontage(EStateType InStateType);
-
-public:	
-	UPROPERTY(EditDefaultsOnly, Category = "DataTable")
-		UDataTable* DataTable;
-	
-private:
-	FMontageData* Datas[(int32)EStateType::Max];
-};
 </code>
 </pre>
 
