@@ -25,9 +25,11 @@ CPortFolio
 -----------
 ### 사용자 정의 컴포넌트
 
-1. StatusComponent - 캐릭터의 이동 상태나 체력 등을 나타내는 컴포넌트
+1. OptionComponent - 플레이어의 시점(카메라) 확대 및 축소, 마우스 감도 등 플레이 환경을 관리하는 컴포넌트
 
-2. StateComponent - 캐릭터의 행동을 나타내며 현재 어떠한 상태인지 알 수 있게 해주는 컴포넌트
+2. StatusComponent - 캐릭터의 이동 상태나 체력 등을 나타내는 컴포넌트
+
+3. StateComponent - 캐릭터의 행동을 나타내며 현재 어떠한 상태인지 알 수 있게 해주는 컴포넌트
 <pre>
 <code>
 UENUM(BlueprintType)
@@ -44,7 +46,7 @@ enum class EStateType : uint8
 + Hitted : 캐릭터가 공격을 당하고 있는 상태
 + Dead : 캐릭터가 사망한 상태
 
-3. MontageComponent - 캐릭터의 몽타주를 데이터 테이블로 만든 후 컴포넌트로 장착하여 실행하는 컴포넌트
+4. MontageComponent - 캐릭터의 몽타주를 데이터 테이블로 만든 후 컴포넌트로 장착하여 실행하는 컴포넌트
 <pre>
 <code>
 USTRUCT(BlueprintType)
@@ -100,7 +102,7 @@ private:
 </code>
 </pre>
 
-4. ActionComponent - 캐릭터의 무기와 교체를 담당하는 컴포넌트
+5. ActionComponent - 캐릭터의 무기와 교체를 담당하는 컴포넌트
 <pre>
 <code>
 UENUM(BlueprintType)
@@ -110,3 +112,23 @@ enum class EActionType : uint8
 };
 </code>
 </pre>
++ Unarmed : 캐릭터가 무기를 착용하지 않은 상태
++ Fist : 주먹을 이용한 캐릭터의 근접 공격
++ Sword : 칼을 이용한 캐릭터의 근접 공격
++ Gun : 총을 이용한 캐릭터의 원거리 공격
++ Grenade : 수류탄을 이용한 원거리 공격
+
+6. BehaviorComponent - AIController를 이용하여 적의 행동 상태를 나타내는 컴포넌트
+<pre>
+<code>
+UENUM(BlueprintType)
+enum class EBehaviorType : uint8
+{
+	Wait, Approach, Action, Patrol, Hitted
+};
+</code>
+</pre>
+
+7. PatrolComponent - SplineComponent를 이용하여 적들의 순찰 경로를 지정해주는 컴포넌트
+
+-----------------------------------------------------------------------------------
