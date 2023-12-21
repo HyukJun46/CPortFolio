@@ -39,12 +39,12 @@ enum class EStateType : uint8
 };
 </code>
 </pre>
-+ Idle : 캐릭터가 아무행동도 하지 않는 상태
-+ Roll : 캐릭터가 구르는 상태 
-+ Equip : 캐릭터가 무기를 장착하고 있는 상태
-+ Action : 캐릭터가 공격하는 상태
-+ Hitted : 캐릭터가 공격을 당하고 있는 상태
-+ Dead : 캐릭터가 사망한 상태
+ + Idle : 캐릭터가 아무행동도 하지 않는 상태
+ + Roll : 캐릭터가 구르는 상태 
+ + Equip : 캐릭터가 무기를 장착하고 있는 상태
+ + Action : 캐릭터가 공격하는 상태
+ + Hitted : 캐릭터가 공격을 당하고 있는 상태
+ + Dead : 캐릭터가 사망한 상태
 
 4. MontageComponent - 캐릭터의 몽타주를 데이터 테이블로 만든 후 컴포넌트로 장착하여 실행하는 컴포넌트
 <pre>
@@ -112,46 +112,23 @@ enum class EActionType : uint8
 };
 </code>
 </pre>
-+ Unarmed : 캐릭터가 무기를 착용하지 않은 상태
-+ Fist : 주먹을 이용한 캐릭터의 근접 공격
-+ Sword : 칼을 이용한 캐릭터의 근접 공격
-+ Gun : 총을 이용한 캐릭터의 원거리 공격
-+ Grenade : 수류탄을 이용한 원거리 공격
+ + Unarmed : 캐릭터가 무기를 착용하지 않은 상태
+ + Fist : 주먹을 이용한 캐릭터의 근접 공격
+ + Sword : 칼을 이용한 캐릭터의 근접 공격
+ + Gun : 총을 이용한 캐릭터의 원거리 공격
+ + Grenade : 수류탄을 이용한 원거리 공격
 
 6. BehaviorComponent - AIController를 이용하여 적의 행동 상태를 나타내는 컴포넌트
 <pre>
 <code>
 UENUM(BlueprintType)
 enum class EBehaviorType : uint8
-{
-	Wait, Approach, Action, Patrol, Hitted
-};
-</code>
-</pre>
+{이
 
-7. PatrolComponent - SplineComponent를 이용하여 적들의 순찰 경로를 지정해주는 컴포넌트
-
-
-노티파이
---------
-
-1. RolledNotify
- + 구르는 애니메이션이 끝났을 경우를 플레이어의 End_Rolled함수를 통해 UnarmedMode로 돌아간다.
-
-2. BeginAcionNotify
- + 플레이어가 콤보 공격 중 콤보 카운트를 증가시켜 다음 콤보로 이어 갈 수 있게 해주는 노티파이
-
-3. EndActionNotify
- + 공격의 종료를 알리는 노티파이
- + 콤보 카운트를 다시 0으로 만들고, UnarmedMode로 돌아간다.
-
-4. HittedNotify
- + 데미지를 받았을 경우 노티파이를 통해 원래의 UnarmedMode로 돌아간다.
-
-5. ComboNotify(State)
- + 공격 모션 중 콤보 노티파이 스테이트 구간 안에서 다시 공격할 경우 콤보 공격 모션이 재생된다.
+7. ComboNotify(State)
+  + 공격 모션 중 콤보 노티파이 스테이트 구간 안에서 다시 공격할 경우 콤보 공격 모션이 재생된다.
 
 7. CollisionNotify(State)
- + 애니메이션에 맞게 공격 모션 지정 시 충돌체를 지정하는 노티파이 스테이트
- + Collision의 노티파이 스테이트 구간 안에 충돌체가 있을 경우 데미지를 준다.
+  + 애니메이션에 맞게 공격 모션 지정 시 충돌체를 지정하는 노티파이 스테이트
+  + Collision의 노티파이 스테이트 구간 안에 충돌체가 있을 경우 데미지를 준다.
 
