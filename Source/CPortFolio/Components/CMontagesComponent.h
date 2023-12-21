@@ -62,5 +62,4 @@ public:
 	
 private:
 	FMontageData* Datas[(int32)EStateType::Max];
-		
 };
