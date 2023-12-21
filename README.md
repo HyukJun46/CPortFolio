@@ -25,11 +25,11 @@ CPortFolio
 -----------
 ## 사용자 정의 컴포넌트
 
-1. OptionComponent - 플레이어의 시점(카메라) 확대 및 축소, 마우스 감도 등 플레이 환경을 관리하는 컴포넌트
+1. OptionComponent - 플레이어의 시점(카메라) 확대 및 축소, 마우스 감도 등 플레이환경을 관리하는 컴포넌트입니다.
 
-2. StatusComponent - 캐릭터의 이동 상태나 체력 등을 나타내는 컴포넌트
+2. StatusComponent - 캐릭터의 이동 상태나 체력 등을 나타내는 컴포넌트입니다.
 
-3. StateComponent - 캐릭터의 행동을 나타내며 현재 어떠한 상태인지 알 수 있게 해주는 컴포넌트
+3. StateComponent - 캐릭터의 행동을 나타내며 현재 어떠한 상태인지 알 수 있게 해주는 컴포넌트입니다.
 <pre>
 <code>
 UENUM(BlueprintType)
@@ -46,7 +46,7 @@ enum class EStateType : uint8
  + Hitted : 캐릭터가 공격을 당하고 있는 상태
  + Dead : 캐릭터가 사망한 상태
 
-4. MontageComponent - 캐릭터의 몽타주를 데이터 테이블로 만든 후 컴포넌트로 장착하여 실행하는 컴포넌트
+4. MontageComponent - 데이터 테이블을 만든 후 캐릭터의 몽타주를 컴포넌트로 장착하여 실행하는 컴포넌트입니다.
 <pre>
 <code>
 USTRUCT(BlueprintType)
@@ -76,7 +76,7 @@ public:
 </code>
 </pre>
 
-5. ActionComponent - 캐릭터의 무기와 교체를 담당하는 컴포넌트
+5. ActionComponent - 캐릭터의 무기와 교체를 담당하는 컴포넌트입니다.
 <pre>
 <code>
 UENUM(BlueprintType)
@@ -92,7 +92,7 @@ enum class EActionType : uint8
  + Gun : 총을 이용한 캐릭터의 원거리 공격
  + Grenade : 수류탄을 이용한 원거리 공격
 
-6. BehaviorComponent - AIController를 이용하여 적의 행동 상태를 나타내는 컴포넌트
+6. BehaviorComponent - AIController를 이용하여 적의 행동 상태를 나타내는 컴포넌트입니다.
 <pre>
 <code>
 UENUM(BlueprintType)
@@ -103,39 +103,39 @@ enum class EBehaviorType : uint8
 </code>
 </pre>
 
-7. PatrolComponent - AI의 적들의 순찰경로를 지정한다.
+7. PatrolComponent - AI의 적들의 순찰경로를 지정합니다.
 
 노티파이
 --------
 
 1. RolledNotify
- + 플레이어가 구른 후 UnarmedMode로 돌아갈 수 있도록 알려준다.
+ + 플레이어가 구른 후 UnarmedMode로 돌아갈 수 있도록 알려주도록 하였습니다.
    
 3. BeginNotify
- + 콤보 공격 시 콤보 카운트를 증가하여 다음 공격 모션이 나가야 함을 알려준다.
+ + 콤보 공격 시 콤보 카운트를 증가하여 다음 공격 모션이 나가야 함을 알려주도록 하였습니다.
 
 4. EndNotify
  + 공격이 종료되었음을 알려준다.
- + 콤보카운트를 다시 0으로 만들고 다시 UnarmedMode로 돌아가게 알려준다.
+ + 콤보카운트를 다시 0으로 만들고 다시 UnarmedMode로 돌아가게 알려주도록 하였습니다.
 
 5. HittedNotify
- + 캐릭터가 공격 당했을 때 맞는 모션 후 다시 UnarmedMode로 돌아가게 알려준다.
+ + 캐릭터가 공격 당했을 때 맞는 모션 후 다시 UnarmedMode로 돌아가도록 하였습니다.
 
 6. EquipNotify
  + 캐릭터가 무기를 장착했음을 알려주는 노티파이
 
 7. ComboNotify(State)
- + 공격 모션 중 콤보 노티파이 스테이트 구간 안에서 다시 공격할 경우 다음 콤보 공격 모션이 재생된다.
+ + 공격 모션 중 콤보 노티파이 스테이트 구간 안에서 다시 공격할 경우 다음 콤보 공격 모션이 재생되도록 하였습니다.
 
 7. CollisionNotify(State)
  + 애니메이션에 맞게 공격 모션 지정 시 충돌체를 지정하는 노티파이 스테이트
- + Collision의 노티파이 스테이트 구간 안에 충돌체가 있을 경우 데미지를 준다.
+ + Collision의 노티파이 스테이트 구간 안에 충돌체가 있을 경우 데미지를 받습습니다.
 
 데이터 에셋
 -----------
-### 구조체를 사용하여 하나의 데이터 에셋에 다양한 데이터들을 사용할 수 있게 하였다.
+### 구조체를 사용하여 하나의 데이터 에셋에 다양한 데이터들을 사용할 수 있게 하였습니다.
 
-1. EquipData - 몽타주, 몽타주 재생시간, 이동공격 여부 등을 장착 모션들을 Blueprint에서 손쉽게 관리할 수 잇다.
+1. EquipData - 몽타주, 몽타주 재생시간, 이동공격 여부 등을 장착 모션들을 Blueprint에서 손쉽게 관리할 수 있습니다.
 <pre>
 <code>
 USTRUCT(BlueprintType)
@@ -162,7 +162,7 @@ public:
 </code>
 </pre>
 
-2. DoActionData - 데미지, 이펙트 등 공격에 관련된 설정들을 Blueprint에서 손쉽게 관리할 수 있다.
+2. DoActionData - 데미지, 이펙트 등 공격에 관련된 설정들을 Blueprint에서 손쉽게 관리할 수 있습니다.
 <pre>
 <code>
 USTRUCT(BlueprintType)
@@ -192,17 +192,45 @@ public:
 </code>
 </pre>
 
-BehaviorTree
-------------
-### 비헤이비어 트리를 사용하여 적들의 행동을 관리한다.
+플레이어
+--------
+1. 조작법
+ + W,A,S,D를 사용하여 캐릭터를 이동합니다.
+ + 마우스를 이용하여 상하좌우 플레이어의 시점을 이동할 수 있습니다.
 
-1. PatrolNode - 적이 플레이어를 발견하기 전 까지 순찰경로를 따라 움직인다.
+2. 무기 변경
+ + 1번을 누를경우 장착/해제할 수 있으며 FistMode로 주먹으로 3번의 콤보공격을 할 수 있습니다.
+![image](https://github.com/HyukJun46/CPortFolio/assets/126559827/641d2f0e-4367-4f32-9e95-b0b33729cbbe)
+
+ + 2번을 누를경우 장착/해제할 수 있으며 SwordMode로 검으로 3번의 콤보공격을 할 수 있습니다.
+![image](https://github.com/HyukJun46/CPortFolio/assets/126559827/ad487194-4835-446c-8eab-af5a36cfee2b)
+
+ + 3번을 누를경우 장착/해제할 수 있으며 GunMode로 마우스 우클릭 시에만 조준하여 공격 할 수 있습니다.
+![image](https://github.com/HyukJun46/CPortFolio/assets/126559827/2cf15de7-3a41-4908-9abf-b4d5aa6d3093)
+![image](https://github.com/HyukJun46/CPortFolio/assets/126559827/56f672e3-09a7-4929-aefb-295f5cef2237)
+
+ + 4번을 누를경우 장착/해제할 수 있으며 GrenadeMode로 수류탄을 던질 수 있습니다.
+   - 현재 제작중입니다.
+
+3. 애니메이션
+ + 플레이어는 무기마다 착용, 이동 모션이 다르며 BlendSpace로 구현하였습니다.
+![image](https://github.com/HyukJun46/CPortFolio/assets/126559827/12b1ae38-3062-4283-a529-407f0888d9a1)
+
+ * 몽타주 애니메이션은 모션을 상하체와 상체로 구분하여 사용 가능합니다.
+![image](https://github.com/HyukJun46/CPortFolio/assets/126559827/7ac9191c-7f6e-4f0b-a580-70922cadebea)
+
+적 - BehaviorTree
+-----------------
+### 비헤이비어 트리를 사용하여 적들의 행동을 관리합니다.
+
+1. PatrolNode - 적이 플레이어를 발견하기 전 까지 순찰경로를 따라 움직입니다.
 ![image](https://github.com/HyukJun46/CPortFolio/assets/126559827/855f084b-26cb-487a-90e9-5a2734550255)
 
-2. MoveSpeedNode - 적이 플레이어를 발견 할 경우 플레이어를 쫓아온다.
+2. MoveSpeedNode - 적이 플레이어를 발견 할 경우 플레이어를 쫓아오도록 설정하였습니다.
 ![image](https://github.com/HyukJun46/CPortFolio/assets/126559827/410ed7c9-86db-4cbc-80a1-409d6af724f7)
 
-3. ActionNode - 적이 플레이어를 발견 할 경우 플레이어를 공격한다.
+3. ActionNode - 적이 플레이어를 발견 할 경우 플레이어를 공격합니다.
 ![image](https://github.com/HyukJun46/CPortFolio/assets/126559827/7d7765a2-1559-4b36-93fe-d27380951ad7)
 
-+ 플레이어가 일정 거리 이상 멀어진다면 Spline으로 되돌아가 다시 순찰을 시작한다.
++ 플레이어가 일정 거리 이상 멀어진다면 Spline으로 되돌아가 다시 순찰을 시작합니다.
+
