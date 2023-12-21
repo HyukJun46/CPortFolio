@@ -189,8 +189,8 @@ public:
 	UPROPERTY(EditAnywhere)
 		TSubclassOf<class ACBullet> ProjectileClass;
 };
-</pre>
 </code>
+</pre>
 
 BehaviorTree
 ------------
