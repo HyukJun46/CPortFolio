@@ -123,12 +123,37 @@ enum class EActionType : uint8
 <code>
 UENUM(BlueprintType)
 enum class EBehaviorType : uint8
-{이
+{
+	Wait, Approach, Action, Patrol, Hitted
+};
+</code>
+</pre>
+
+7. PatrolComponent - AI의 적들의 순찰경로를 SplineComponent를 이용하여 
+
+노티파이
+--------
+
+1. RolledNotify
+ + 플레이어가 구른 후 UnarmedMode로 돌아갈 수 있도록 알려준다.
+   
+3. BeginNotify
+ + 콤보 공격 시 콤보 카운트를 증가하여 다음 공격 모션이 나가야 함을 알려준다.
+
+4. EndNotify
+ + 공격이 종료되었음을 알려준다.
+ + 콤보카운트를 다시 0으로 만들고 다시 UnarmedMode로 돌아가게 알려준다.
+
+5. HittedNotify
+ + 캐릭터가 공격 당했을 때 맞는 모션 후 다시 UnarmedMode로 돌아가게 알려준다.
+
+6. EquipNotify
+ + 캐릭터가 무기를 장착했음을 알려주는 노티파이
 
 7. ComboNotify(State)
-  + 공격 모션 중 콤보 노티파이 스테이트 구간 안에서 다시 공격할 경우 콤보 공격 모션이 재생된다.
+ + 공격 모션 중 콤보 노티파이 스테이트 구간 안에서 다시 공격할 경우 다음 콤보 공격 모션이 재생된다.
 
 7. CollisionNotify(State)
-  + 애니메이션에 맞게 공격 모션 지정 시 충돌체를 지정하는 노티파이 스테이트
-  + Collision의 노티파이 스테이트 구간 안에 충돌체가 있을 경우 데미지를 준다.
+ + 애니메이션에 맞게 공격 모션 지정 시 충돌체를 지정하는 노티파이 스테이트
+ + Collision의 노티파이 스테이트 구간 안에 충돌체가 있을 경우 데미지를 준다.
 
