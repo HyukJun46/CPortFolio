@@ -129,7 +129,7 @@ enum class EBehaviorType : uint8
 </code>
 </pre>
 
-7. PatrolComponent - AI의 적들의 순찰경로를 SplineComponent를 이용하여 
+7. PatrolComponent - AI의 적들의 순찰경로를 지정한다.
 
 노티파이
 --------
