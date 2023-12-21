@@ -23,4 +23,14 @@ CPortFolio
 
 사용된 기능
 -----------
-1. ##### 컴포넌트
+### 사용자 정의 컴포넌트
+1. StateComponent - 캐릭터의 행동을 나타내며 현재 어떠한 상태인지 알 수 있게 해준다.
+<pre>
+<code>
+UENUM(BlueprintType)
+enum class EStateType : uint8
+{
+	Idle, Roll, Equip, Action, Hitted, Dead, Max
+};
+</code>
+</pre>
