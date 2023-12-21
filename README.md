@@ -132,5 +132,26 @@ enum class EBehaviorType : uint8
 7. PatrolComponent - SplineComponent를 이용하여 적들의 순찰 경로를 지정해주는 컴포넌트
 
 
-데이터 에셋
------------
+노티파이
+--------
+
+1. RolledNotify
+ + 구르는 애니메이션이 끝났을 경우를 플레이어의 End_Rolled함수를 통해 UnarmedMode로 돌아간다.
+
+2. BeginAcionNotify
+ + 플레이어가 콤보 공격 중 콤보 카운트를 증가시켜 다음 콤보로 이어 갈 수 있게 해주는 노티파이
+
+3. EndActionNotify
+ + 공격의 종료를 알리는 노티파이
+ + 콤보 카운트를 다시 0으로 만들고, UnarmedMode로 돌아간다.
+
+4. HittedNotify
+ + 데미지를 받았을 경우 노티파이를 통해 원래의 UnarmedMode로 돌아간다.
+
+5. ComboNotify(State)
+ + 공격 모션 중 콤보 노티파이 스테이트 구간 안에서 다시 공격할 경우 콤보 공격 모션이 재생된다.
+
+7. CollisionNotify(State)
+ + 애니메이션에 맞게 공격 모션 지정 시 충돌체를 지정하는 노티파이 스테이트
+ + Collision의 노티파이 스테이트 구간 안에 충돌체가 있을 경우 데미지를 준다.
+
