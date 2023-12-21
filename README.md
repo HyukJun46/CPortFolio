@@ -157,3 +157,63 @@ enum class EBehaviorType : uint8
  + 애니메이션에 맞게 공격 모션 지정 시 충돌체를 지정하는 노티파이 스테이트
  + Collision의 노티파이 스테이트 구간 안에 충돌체가 있을 경우 데미지를 준다.
 
+데이터 에셋
+-----------
+### 구조체를 사용하여 하나의 데이터 에셋에 다양한 데이터들을 사용할 수 있게 하였다.
+
+1. EquipData - 몽타주, 몽타주 재생시간, 이동공격 여부 등을 장착 모션들을 Blueprint에서 손쉽게 관리할 수 잇다.
+<pre>
+<code>
+USTRUCT(BlueprintType)
+struct FEquipmentData
+{
+	GENERATED_BODY()
+
+public:
+	UPROPERTY(EditAnywhere)
+		class UAnimMontage* AnimMontage;
+
+	UPROPERTY(EditAnywhere)
+		float PlayRate = 1.f;
+
+	UPROPERTY(EditAnywhere)
+		FName StartSection;
+
+	UPROPERTY(EditAnywhere)
+		bool bCanMove = true;
+
+	UPROPERTY(EditAnywhere)
+		bool bPawnControl = true;
+};
+</code>
+</pre>
+
+2. DoActionData - 데미지, 이펙트 등 공격에 관련된 설정들을 Blueprint에서 손쉽게 관리할 수 있다.
+<pre>
+<code>
+USTRUCT(BlueprintType)
+struct FDoActionData : public FEquipmentData
+{
+	GENERATED_BODY()
+
+public:
+	UPROPERTY(EditAnywhere)
+		float Power = 1.f;
+
+	UPROPERTY(EditAnywhere)
+		float HitStop;
+
+	UPROPERTY(EditAnywhere)
+		class UParticleSystem* Effect;
+
+	UPROPERTY(EditAnywhere)
+		FTransform EffectTransform;
+
+	UPROPERTY(EditAnywhere)
+		TSubclassOf<class UCameraShake> ShakeClass;
+
+	UPROPERTY(EditAnywhere)
+		TSubclassOf<class ACBullet> ProjectileClass;
+};
+</pre>
+</code>
