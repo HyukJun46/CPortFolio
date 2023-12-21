@@ -10,9 +10,15 @@ class CPORTFOLIO_API ACEnemy_Girl_AI : public ACEnemy_Girl
 	GENERATED_BODY()
 
 public:
+	ACEnemy_Girl_AI();
+
+public:
 	FORCEINLINE class UBehaviorTree* GetBehaviorTree() { return BehaviorTree; }
 	FORCEINLINE uint8 GetTeamID() { return TeamID; }
 
+private:
+	UPROPERTY(VisibleDefaultsOnly)
+		class UCPatrolComponent* Patrol;
 
 private:
 	UPROPERTY(EditDefaultsOnly, Category = "AI")
