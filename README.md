@@ -24,13 +24,89 @@ CPortFolio
 사용된 기능
 -----------
 ### 사용자 정의 컴포넌트
-1. StateComponent - 캐릭터의 행동을 나타내며 현재 어떠한 상태인지 알 수 있게 해준다.
+
+1. StatusComponent - 캐릭터의 이동 상태나 체력 등을 나타내는 컴포넌트
+
+2. StateComponent - 캐릭터의 행동을 나타내며 현재 어떠한 상태인지 알 수 있게 해주는 컴포넌트
 <pre>
 <code>
 UENUM(BlueprintType)
 enum class EStateType : uint8
 {
 	Idle, Roll, Equip, Action, Hitted, Dead, Max
+};
+</code>
+</pre>
++ Idle : 캐릭터가 아무행동도 하지 않는 상태
++ Roll : 캐릭터가 구르는 상태 
++ Equip : 캐릭터가 무기를 장착하고 있는 상태
++ Action : 캐릭터가 공격하는 상태
++ Hitted : 캐릭터가 공격을 당하고 있는 상태
++ Dead : 캐릭터가 사망한 상태
+
+3. MontageComponent - 캐릭터의 몽타주를 데이터 테이블로 만든 후 컴포넌트로 장착하여 실행하는 컴포넌트
+<pre>
+<code>
+USTRUCT(BlueprintType)
+struct FMontageData : public FTableRowBase 
+{
+	GENERATED_BODY()
+
+public:
+	static void Log(const FString& InValue);
+
+public:
+	UPROPERTY(EditAnywhere)
+		EStateType Type;
+
+	UPROPERTY(EditAnywhere)
+		class UAnimMontage* AnimMontage;
+
+	UPROPERTY(EditAnywhere)
+		float PlayRate = 1.f;
+
+	UPROPERTY(EditAnywhere)
+		FName StartSection;
+
+	UPROPERTY(EditAnywhere)
+		bool bCanMove;
+};
+
+UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
+class CPORTFOLIO_API UCMontagesComponent : public UActorComponent
+{
+	GENERATED_BODY()
+
+public:	
+	UCMontagesComponent();
+
+protected:
+	virtual void BeginPlay() override;
+
+public:
+	void PlayRoll();
+	void PlayHitted();
+
+private:
+	void PlayAnimMontage(EStateType InStateType);
+
+public:	
+	UPROPERTY(EditDefaultsOnly, Category = "DataTable")
+		UDataTable* DataTable;
+	
+private:
+	FMontageData* Datas[(int32)EStateType::Max];
+};
+</code>
+</pre>
+
+4. ActionComponent - 캐릭터의 무기와 교체를 담당하는 컴포넌트
+<pre>
+<code>
+UENUM(BlueprintType)
+enum class EActionType : uint8
+{
+	Unarmed, Fist, Sword, Gun, Grenade, Max
 };
 </code>
 </pre>
