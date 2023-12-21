@@ -200,6 +200,7 @@ public:
 
 2. 무기 변경
  + 1번을 누를경우 장착/해제할 수 있으며 FistMode로 주먹으로 3번의 콤보공격을 할 수 있습니다.
+
 ![image](https://github.com/HyukJun46/CPortFolio/assets/126559827/641d2f0e-4367-4f32-9e95-b0b33729cbbe)
 
  + 2번을 누를경우 장착/해제할 수 있으며 SwordMode로 검으로 3번의 콤보공격을 할 수 있습니다.
