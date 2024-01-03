@@ -15,6 +15,7 @@ void UCBTService::TickNode(UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory,
 {
 	Super::TickNode(OwnerComp, NodeMemory, DeltaSeconds);
 
+	//GetComponent
 	ACAIController* controller = Cast<ACAIController>(OwnerComp.GetOwner());
 	if (controller == nullptr) return;
 
