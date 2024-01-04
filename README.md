@@ -194,7 +194,7 @@ public:
 
 플레이어
 --------
-![image](https://github.com/HyukJun46/CPortFolio/assets/126559827/aad53ee0-3201-48e9-b9bc-bbd6e6479d14)
+![image](https://github.com/HyukJun46/CPortFolio/assets/126559827/bf3cfe25-4a3c-423b-9f9d-cd80420a6ad5)
 
 1. 조작법
  + W,A,S,D를 사용하여 캐릭터를 이동합니다.
@@ -226,6 +226,8 @@ public:
 
 적 - BehaviorTree
 -----------------
+![image](https://github.com/HyukJun46/CPortFolio/assets/126559827/65e910fe-7624-488d-b4a8-afb84a688cf7)
+
 ### 비헤이비어 트리를 사용하여 적들의 행동을 관리합니다.
 
 1. PatrolNode - 적이 플레이어를 발견하기 전 까지 순찰경로를 따라 움직입니다.
