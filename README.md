@@ -194,6 +194,8 @@ public:
 
 플레이어
 --------
+![image](https://github.com/HyukJun46/CPortFolio/assets/126559827/aad53ee0-3201-48e9-b9bc-bbd6e6479d14)
+
 1. 조작법
  + W,A,S,D를 사용하여 캐릭터를 이동합니다.
  + 마우스를 이용하여 상하좌우 플레이어의 시점을 이동할 수 있습니다.
