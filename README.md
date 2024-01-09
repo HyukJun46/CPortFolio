@@ -225,6 +225,7 @@ public:
 ![image](https://github.com/HyukJun46/CPortFolio/assets/126559827/7ac9191c-7f6e-4f0b-a580-70922cadebea)
 
 4. 플레이어 HP
+
 ![image](https://github.com/HyukJun46/CPortFolio/assets/126559827/4fa9c151-f679-4d85-9684-5b8b7c7e11dd)
 
 플레이어의 HP는 0에 가까워질수록 초록색 -> 빨간색으로 바뀌고, 직관적으로 플레이어의 현재 남은 HP를 알 수 있습니다.
