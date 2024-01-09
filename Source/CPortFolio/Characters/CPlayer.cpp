@@ -9,6 +9,8 @@
 #include "Components/CActionComponent.h"
 #include "Kismet/KismetMathLibrary.h"
 #include "Actions/CActionData.h"
+#include "Widgets/CPlayerHealthWidget.h"
+
 
 ACPlayer::ACPlayer()
 {
@@ -60,9 +62,15 @@ void ACPlayer::BeginPlay()
 {
 	Super::BeginPlay();
 	
+	//State Type Changed Event
 	State->OnStateTypeChanged.AddDynamic(this, &ACPlayer::OnStateTypeChanged);
 
 	Action->SetUnarmedMode();
+
+	//Create Widgets
+	HealthWidget = Cast<UCPlayerHealthWidget>(CreateWidget(GetController<APlayerController>(), HealthWidgetClass));
+	if(HealthWidget == nullptr) return;
+	HealthWidget->AddToViewport();
 }
 
 void ACPlayer::Tick(float DeltaTime)

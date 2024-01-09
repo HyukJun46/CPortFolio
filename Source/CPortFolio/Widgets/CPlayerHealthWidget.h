@@ -8,5 +8,26 @@ UCLASS()
 class CPORTFOLIO_API UCPlayerHealthWidget : public UUserWidget
 {
 	GENERATED_BODY()
-	
+
+protected:
+	virtual void NativeConstruct() override;
+
+public:
+	UFUNCTION(BlueprintNativeEvent)
+		void UpdateHealth();
+	void UpdateHealth_Implementation();
+
+private:
+	UPROPERTY(meta = (BindWidget))
+		class UImage* CircleGuage;
+
+	UPROPERTY(meta = (BindWidget))
+		class UTextBlock* CurrentHealthText;
+
+	UPROPERTY(meta = (BindWidgetAnim))
+		class UWidgetAnimation* DecreaseImpact;
+
+private:
+	class UMaterialInstanceDynamic* Material;
+	class UCStatusComponent* StatusComp;
 };

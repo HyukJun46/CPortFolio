@@ -89,6 +89,11 @@ private:
 	UPROPERTY(EditDefaultsOnly)
 		uint8 PlayerTeamID = 0;
 
+	UPROPERTY(EditDefaultsOnly, Category = "Widget")
+		TSubclassOf<class UCPlayerHealthWidget> HealthWidgetClass;
+
 private:
 	FGenericTeamId TeamGenericID;
+
+	class UCPlayerHealthWidget* HealthWidget;
 };
