@@ -224,6 +224,16 @@ public:
  * 몽타주 애니메이션은 모션을 상하체와 상체로 구분하여 사용 가능합니다.
 ![image](https://github.com/HyukJun46/CPortFolio/assets/126559827/7ac9191c-7f6e-4f0b-a580-70922cadebea)
 
+4. 플레이어 HP
+
+![image](https://github.com/HyukJun46/CPortFolio/assets/126559827/4fa9c151-f679-4d85-9684-5b8b7c7e11dd)
+
+플레이어의 HP는 0에 가까워질수록 초록색 -> 빨간색으로 바뀌고, 직관적으로 플레이어의 현재 남은 HP를 알 수 있습니다.
+
+![image](https://github.com/HyukJun46/CPortFolio/assets/126559827/846a0269-f6e2-41a7-a62b-a3030b8ce849) ![image](https://github.com/HyukJun46/CPortFolio/assets/126559827/77cd57e1-6171-4475-929e-9ce41ed38ae4) ![image](https://github.com/HyukJun46/CPortFolio/assets/126559827/8476416e-f677-4ba1-a28a-9064d4b7f02a)
+
+
+
 적 - BehaviorTree
 -----------------
 ![image](https://github.com/HyukJun46/CPortFolio/assets/126559827/65e910fe-7624-488d-b4a8-afb84a688cf7)
