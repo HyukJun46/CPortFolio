@@ -11,6 +11,7 @@ ACAIController::ACAIController()
 {
 	PrimaryActorTick.bCanEverTick = true;
 
+	//Get BehaviorTree
 	Blackboard = CreateDefaultSubobject<UBlackboardComponent>("BlackBoard");
 	Behavior = CreateDefaultSubobject<UCBehaviorComponent>("Behavior");
 	Perception = CreateDefaultSubobject<UAIPerceptionComponent>("Perception");
