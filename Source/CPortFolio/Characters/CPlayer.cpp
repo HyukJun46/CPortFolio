@@ -68,9 +68,9 @@ void ACPlayer::BeginPlay()
 	Action->SetUnarmedMode();
 
 	//Create Widgets
-	HealthWidget = Cast<UCPlayerHealthWidget>(CreateWidget(GetController<APlayerController>(), HealthWidgetClass));
-	if(HealthWidget == nullptr) return;
-	HealthWidget->AddToViewport();
+	//HealthWidget = Cast<UCPlayerHealthWidget>(CreateWidget(GetController<APlayerController>(), HealthWidgetClass));
+	//if(HealthWidget == nullptr) return;
+	//HealthWidget->AddToViewport();
 }
 
 void ACPlayer::Tick(float DeltaTime)
